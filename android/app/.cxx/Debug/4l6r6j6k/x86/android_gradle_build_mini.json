@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "/Users/amshelkanyi/flutter/packages/flutter_tools/gradle/src/main/groovy/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/amshelkanyi/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Users/amshelkanyi/code/flutter/expense_tracker/android/app/.cxx/Debug/4l6r6j6k/x86",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/amshelkanyi/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Users/amshelkanyi/code/flutter/expense_tracker/android/app/.cxx/Debug/4l6r6j6k/x86",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}
