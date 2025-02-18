@@ -1,4 +1,5 @@
-import 'package:expense_tracker/l10n/arb/app_localizations.dart' show AppLocalizations;
+import 'package:expense_tracker/l10n/arb/app_localizations.dart'
+    show AppLocalizations;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
