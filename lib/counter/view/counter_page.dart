@@ -1,5 +1,6 @@
 import 'package:expense_tracker/counter/counter.dart';
 import 'package:expense_tracker/l10n/l10n.dart';
+import 'package:expense_tracker/util/common/base_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -23,7 +24,7 @@ class CounterView extends StatelessWidget {
     final l10n = context.l10n;
     return Scaffold(
       appBar: AppBar(title: Text(l10n.counterAppBarTitle)),
-      body: const Center(child: CounterText()),
+      body:  Center(child: PrimaryButton(onPressed: (){}, label: 'Primary', icon: Icon(Icons.access_alarm),)),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.end,
