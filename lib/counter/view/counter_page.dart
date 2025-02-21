@@ -24,7 +24,7 @@ class CounterView extends StatelessWidget {
     final l10n = context.l10n;
     return Scaffold(
       appBar: AppBar(title: Text(l10n.counterAppBarTitle)),
-      body:  Center(child: PrimaryButton(onPressed: (){}, label: 'Primary', icon: Icon(Icons.access_alarm),)),
+      body:  Center(child: PrimaryButton(onPressed: (){}, label: 'Primary', icon: Icon(Icons.access_alarm, ),)),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.end,
