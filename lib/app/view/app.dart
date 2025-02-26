@@ -1,6 +1,6 @@
-import 'package:expense_tracker/counter/counter.dart';
 import 'package:expense_tracker/l10n/arb/app_localizations.dart'
     show AppLocalizations;
+import 'package:expense_tracker/login_guide/view/login_guide_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -19,7 +19,7 @@ class App extends StatelessWidget {
       ),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const CounterPage(),
+      home: const LoginGuidePage(),
     );
   }
 }

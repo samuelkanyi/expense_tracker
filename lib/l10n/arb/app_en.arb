@@ -1,7 +1,27 @@
 {
     "@@locale": "en",
-    "counterAppBarTitle": "Counter",
-    "@counterAppBarTitle": {
-        "description": "Text shown in the AppBar of the Counter Page"
+    "guide_screen_1_title": "Gain total control of your money",
+    "@guide_screen_1_title": {
+        "description": "Text shown in login guide screens"
+    },
+    "guide_screen_1_desc": "Become your own money manager and make every cent count",
+    "@guide_screen_1_desc": {
+        "description": "Text shown in login guide screens"
+    },
+    "guide_screen_2_title": "Know where your money goes",
+    "@guide_screen_2_title": {
+        "description": "Text shown in login guide screens"
+    },
+    "guide_screen_2_desc": "Track your transaction easily, with categories and financial report",
+    "@guide_screen_2_desc": {
+        "description": "Text shown in login guide screens"
+    },
+    "guide_screen_3_title": "Planning ahead",
+    "@guide_screen_3_title": {
+        "description": "Text shown in login guide screens"
+    },
+    "guide_screen_3_desc": "Setup your budget for each category so you in control",
+    "@guide_screen_3_desc": {
+        "description": "Text shown in login guide screens "
     }
 }
