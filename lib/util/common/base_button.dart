@@ -1,12 +1,12 @@
-
 import 'package:expense_tracker/util/colors.dart';
 import 'package:flutter/material.dart';
 
 class BaseButton extends StatelessWidget {
   const BaseButton({
+    required this.onPressed,
+    super.key,
     this.textColor = const Color(0xFFFFFFFF),
     this.backgroundColor = const Color(0xFF000000),
-    required this.onPressed,
     this.width = 200,
     this.height = 50,
     this.withIcon = false,
@@ -24,14 +24,14 @@ class BaseButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: width,
       height: height,
       child: withIcon
           ? ElevatedButton.icon(
               onPressed: () => onPressed,
               label: Text(label),
-              icon: Icon(Icons.add),
+              icon: const Icon(Icons.add),
               style: ButtonStyle(
                 shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
@@ -44,7 +44,6 @@ class BaseButton extends StatelessWidget {
             )
           : TextButton(
               onPressed: () {},
-              child: Text(label),
               style: ButtonStyle(
                 shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
@@ -54,42 +53,46 @@ class BaseButton extends StatelessWidget {
                 backgroundColor: WidgetStateProperty.all(backgroundColor),
                 foregroundColor: WidgetStateProperty.all(textColor),
               ),
+              child: Text(
+                label,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
     );
   }
 }
 
 class PrimaryButton extends BaseButton {
-  const PrimaryButton(
-      {required Function onPressed,
-      double width = 200,
-      double height = 50,
-      bool hasIcon = false,
-      Icon icon = const Icon(Icons.add),
-      String label = ''})
-      : super(
-          onPressed: onPressed,
-          width: width,
-          height: height,
+  const PrimaryButton({
+    required super.onPressed,
+    super.key,
+    super.width,
+    super.height,
+    bool hasIcon = false,
+    super.icon,
+    super.label = '',
+  }) : super(
           backgroundColor: AppColors.violet100,
           textColor: AppColors.light100,
           withIcon: hasIcon,
-          label: label,
-          icon: icon,
         );
 }
 
 class SecondaryButton extends BaseButton {
   const SecondaryButton({
-    required Function onPressed,
-    double width = 200,
-    double height = 50,
+    required super.onPressed,
+    super.key,
+    super.width,
+    super.height,
+    super.icon,
     bool hasIcon = false,
+    super.label = '',
   }) : super(
-          onPressed: onPressed,
-          width: width,
-          height: height,
           backgroundColor: AppColors.violet20,
           textColor: AppColors.violet100,
+          withIcon: hasIcon,
         );
 }
