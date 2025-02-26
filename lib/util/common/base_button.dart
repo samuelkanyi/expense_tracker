@@ -66,15 +66,15 @@ class BaseButton extends StatelessWidget {
 }
 
 class PrimaryButton extends BaseButton {
-  const PrimaryButton(
-      {required super.onPressed,
-      super.key,
-      super.width,
-      super.height,
-      bool hasIcon = false,
-      super.icon,
-      super.label = ''})
-      : super(
+  const PrimaryButton({
+    required super.onPressed,
+    super.key,
+    super.width,
+    super.height,
+    bool hasIcon = false,
+    super.icon,
+    super.label = '',
+  }) : super(
           backgroundColor: AppColors.violet100,
           textColor: AppColors.light100,
           withIcon: hasIcon,

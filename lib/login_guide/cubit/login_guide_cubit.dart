@@ -14,4 +14,3 @@ class PageCubit extends Cubit<int> {
     return super.close();
   }
 }
-
