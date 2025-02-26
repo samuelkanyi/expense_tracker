@@ -95,11 +95,41 @@ abstract class AppLocalizations {
     Locale('es')
   ];
 
-  /// Text shown in the AppBar of the Counter Page
+  /// Text shown in login guide screens
   ///
   /// In en, this message translates to:
-  /// **'Counter'**
-  String get counterAppBarTitle;
+  /// **'Gain total control of your money'**
+  String get guide_screen_1_title;
+
+  /// Text shown in login guide screens
+  ///
+  /// In en, this message translates to:
+  /// **'Become your own money manager and make every cent count'**
+  String get guide_screen_1_desc;
+
+  /// Text shown in login guide screens
+  ///
+  /// In en, this message translates to:
+  /// **'Know where your money goes'**
+  String get guide_screen_2_title;
+
+  /// Text shown in login guide screens
+  ///
+  /// In en, this message translates to:
+  /// **'Track your transaction easily, with categories and financial report'**
+  String get guide_screen_2_desc;
+
+  /// Text shown in login guide screens
+  ///
+  /// In en, this message translates to:
+  /// **'Planning ahead'**
+  String get guide_screen_3_title;
+
+  /// Text shown in login guide screens
+  ///
+  /// In en, this message translates to:
+  /// **'Setup your budget for each category so you in control'**
+  String get guide_screen_3_desc;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
