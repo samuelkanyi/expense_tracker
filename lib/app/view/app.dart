@@ -1,3 +1,4 @@
+import 'package:expense_tracker/app/helpers/navigation_observer.dart';
 import 'package:expense_tracker/l10n/arb/app_localizations.dart'
     show AppLocalizations;
 import 'package:expense_tracker/login_guide/view/login_guide_page.dart';
@@ -17,6 +18,9 @@ class App extends StatelessWidget {
         useMaterial3: true,
         fontFamily: GoogleFonts.inter().fontFamily,
       ),
+      navigatorObservers: [
+        CustomNavigationObserver(),
+      ],
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       home: const LoginGuidePage(),
