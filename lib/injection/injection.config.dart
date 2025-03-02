@@ -9,6 +9,9 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:expense_tracker/login/cubit/cubit/login_cubit.dart';
+import 'package:expense_tracker/sign_up/cubit/cubit/sign_up_cubit.dart'
+    as _i1016;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
@@ -18,11 +21,13 @@ extension GetItInjectableX on _i174.GetIt {
     String? environment,
     _i526.EnvironmentFilter? environmentFilter,
   }) {
-    _i526.GetItHelper(
+    final gh = _i526.GetItHelper(
       this,
       environment,
       environmentFilter,
     );
+    gh.factory<_i1016.SignUpCubit>(() => _i1016.SignUpCubit());
+    gh.factory<LoginCubit>(() => LoginCubit());
     return this;
   }
 }

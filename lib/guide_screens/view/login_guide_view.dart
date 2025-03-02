@@ -1,6 +1,6 @@
 import 'package:expense_tracker/app/routing/router_names.dart';
 import 'package:expense_tracker/l10n/l10n.dart';
-import 'package:expense_tracker/login_guide/cubit/login_guide_cubit.dart';
+import 'package:expense_tracker/guide_screens/cubit/login_guide_cubit.dart';
 import 'package:expense_tracker/sign_up/view/sign_up_view.dart';
 import 'package:expense_tracker/util/app_utils.dart';
 import 'package:expense_tracker/util/colors.dart';
@@ -80,7 +80,7 @@ class LoginGuideView extends StatelessWidget {
                 SecondaryButton(
                   onPressed: () {
                     logThis('Sign Up button pressed');
-                    context.goNamed(RouterNames.signUp);
+                    context.go(RouterNames.login);
                   },
                   label: 'Log In',
                   width: double.infinity,
