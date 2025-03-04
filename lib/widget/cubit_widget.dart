@@ -1,3 +1,4 @@
+import 'package:expense_tracker/injection/injection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,7 +18,7 @@ abstract class CubitWidget<T extends Cubit<S>, S> extends StatefulWidget {
 }
 
 class CubitWidgetState<T extends Cubit<S>, S> extends State<CubitWidget<T, S>> {
-  late final T _cubit = context.read<T>();
+  late final T _cubit = getIt.get();
   
   @override
   void initState() {

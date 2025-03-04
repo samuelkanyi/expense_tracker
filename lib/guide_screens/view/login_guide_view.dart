@@ -1,10 +1,15 @@
+import 'package:expense_tracker/app/routing/router_names.dart';
 import 'package:expense_tracker/l10n/l10n.dart';
-import 'package:expense_tracker/login_guide/cubit/login_guide_cubit.dart';
+import 'package:expense_tracker/guide_screens/cubit/login_guide_cubit.dart';
+import 'package:expense_tracker/sign_up/view/sign_up_view.dart';
+import 'package:expense_tracker/util/app_utils.dart';
 import 'package:expense_tracker/util/colors.dart';
 import 'package:expense_tracker/util/common/base_button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginGuideView extends StatelessWidget {
   const LoginGuideView({super.key});
@@ -56,9 +61,7 @@ class LoginGuideView extends StatelessWidget {
                         width: 10,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: state == index
-                              ? Colors.black
-                              : Colors.grey,
+                          color: state == index ? Colors.black : Colors.grey,
                         ),
                       );
                     }),
@@ -66,13 +69,19 @@ class LoginGuideView extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 PrimaryButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    logThis('Sign Up button pressed');
+                    context.go(RouterNames.signUp);
+                  },
                   label: 'Sign Up',
                   width: double.infinity,
                 ),
                 const SizedBox(height: 16),
                 SecondaryButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    logThis('Sign Up button pressed');
+                    context.go(RouterNames.login);
+                  },
                   label: 'Log In',
                   width: double.infinity,
                 ),
