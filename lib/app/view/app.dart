@@ -1,6 +1,7 @@
 import 'package:expense_tracker/app/routing/app_navigator.dart';
 import 'package:expense_tracker/l10n/arb/app_localizations.dart'
     show AppLocalizations;
+import 'package:expense_tracker/util/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -24,14 +25,7 @@ class _AppState extends State<App> {
     return MaterialApp.router(
       routerConfig: router,
       key: GlobalKey(),
-      theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        ),
-        useMaterial3: true,
-        fontFamily: GoogleFonts.inter().fontFamily,
-      ),
-      
+      theme: appTheme,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       debugShowCheckedModeBanner: false,
