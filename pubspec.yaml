@@ -40,6 +40,7 @@ flutter:
   assets:
     - assets/
     - assets/illustrations/
+    - assets/icons/
 # flutter native splash screen
 flutter_native_splash:
   color: "#7F3DFF"
