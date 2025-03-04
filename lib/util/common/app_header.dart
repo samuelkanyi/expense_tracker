@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class AppHeader extends StatelessWidget {
+  const AppHeader({Key? key, required this.label}) : super(key: key);
+  final String label;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -12,7 +14,12 @@ class AppHeader extends StatelessWidget {
             icon: Icon(Icons.arrow_back),
             onPressed: () => context.navigateToHome(),
           ),
-          Text('Expense Tracker'),
+          Expanded(child: Container()),
+          Text(
+            label,
+            style: Theme.of(context).textTheme.labelMedium,
+          ),
+          Expanded(child: Container()),
         ],
       ),
     );
