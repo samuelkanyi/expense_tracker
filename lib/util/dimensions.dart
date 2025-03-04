@@ -25,6 +25,7 @@ abstract class Dimensions {
   static const double custom24 = 24;
   static const double custom37 = 37;
   static const double custom44 = 44;
+  static const double custom56 = 56;
 
   static const Radius cornerRadius = Radius.circular(custom10);
   static const Radius appBarRadius = Radius.circular(custom20);
