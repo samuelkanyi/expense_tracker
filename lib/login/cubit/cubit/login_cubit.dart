@@ -7,5 +7,5 @@ part 'login_cubit.freezed.dart';
 
 @injectable
 class LoginCubit extends Cubit<LoginState> {
-  LoginCubit() : super(LoginState.initial());
+  LoginCubit() : super(const LoginState.initial());
 }
