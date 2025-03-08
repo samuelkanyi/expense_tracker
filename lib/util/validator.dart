@@ -1,6 +1,7 @@
 import 'package:email_validator/email_validator.dart' as email_validator;
 
 abstract class Validator {
+  const Validator();
   const factory Validator.required(
     String errorMessage,
   ) = RequiredFieldValidator;
@@ -16,7 +17,7 @@ abstract class Validator {
     String errorMessage,
   ) = RegexValidator;
   factory Validator.phone(String errorMessage) => Validator.regex(
-        RegExp(r"^\+[1-9]\d{1,14}$"),
+        RegExp(r'^\+[1-9]\d{1,14}$'),
         errorMessage,
       );
   const factory Validator.external(
@@ -29,7 +30,6 @@ abstract class Validator {
   const factory Validator.or(
     List<Validator> validators,
   ) = SumValidator;
-  const Validator();
 
   //write a validator where password should not be the same
   const factory Validator.passwordNotSame(
@@ -46,8 +46,8 @@ class IntersectionValidator extends Validator {
 
   @override
   String? call(String? value) {
-    var errors = validators.map((v) => v.call(value)).where((e) => e != null);
-    return errors.isEmpty ? null : errors.join("\n");
+    final errors = validators.map((v) => v.call(value)).where((e) => e != null);
+    return errors.isEmpty ? null : errors.join('\n');
   }
 }
 
@@ -58,7 +58,9 @@ class SumValidator extends Validator {
   @override
   String? call(String? value) {
     final errors = validators.map((v) => v.call(value));
-    return errors.any((element) => element == null) ? null : errors.join(" or ");
+    return errors.any((element) => element == null)
+        ? null
+        : errors.join(' or ');
   }
 }
 
@@ -70,14 +72,14 @@ class RequiredFieldValidator extends Validator {
   String? call(String? value) => value?.isEmpty ?? true ? errorMessage : null;
 }
 
-
 class PasswordMatchValidator extends Validator {
   const PasswordMatchValidator(this.passwordToMatch, this.errorMessage);
   final String Function() passwordToMatch;
   final String errorMessage;
 
   @override
-  String? call(String? value) => value == passwordToMatch() ? null : errorMessage;
+  String? call(String? value) =>
+      value == passwordToMatch() ? null : errorMessage;
 }
 
 class RegexValidator extends Validator {
@@ -107,7 +109,8 @@ class PasswordNotSameValidator extends Validator {
   final String errorMessage;
 
   @override
-  String? call(String? value) => value != passwordToMatch() ? null : errorMessage;
+  String? call(String? value) =>
+      value != passwordToMatch() ? null : errorMessage;
 }
 
 class EmailValidator extends Validator {
