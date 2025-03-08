@@ -4,7 +4,6 @@ import 'package:expense_tracker/l10n/arb/app_localizations.dart'
 import 'package:expense_tracker/util/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
