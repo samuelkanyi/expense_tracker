@@ -1,4 +1,3 @@
-import 'package:bloc/src/cubit.dart';
 import 'package:expense_tracker/sign_up/cubit/cubit/sign_up_cubit.dart';
 import 'package:expense_tracker/util/asset_file.dart';
 import 'package:expense_tracker/util/colors.dart';
@@ -8,21 +7,22 @@ import 'package:expense_tracker/util/common/custom_input.dart';
 import 'package:expense_tracker/util/dimensions.dart';
 import 'package:expense_tracker/widget/cubit_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/svg.dart';
 
 class SignUpView extends CubitWidget<SignUpCubit, SignUpState> {
+  const SignUpView({super.key});
+
   @override
-  Widget build(BuildContext context, Cubit cubit, state) {
+  Widget build(BuildContext context, SignUpCubit cubit, SignUpState state) {
     return Scaffold(
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingL),
           child: Column(spacing: Dimensions.paddingM, children: [
-            AppHeader(
+            const AppHeader(
               label: 'Sign Up',
             ),
-            SizedBox(height: Dimensions.custom56),
+            const SizedBox(height: Dimensions.custom56),
             CustomInput(
               controller: TextEditingController(),
               onChanged: (String txt) {},
@@ -57,14 +57,14 @@ class SignUpView extends CubitWidget<SignUpCubit, SignUpState> {
             Text('Or with',
                 style: Theme.of(context).textTheme.labelMedium?.copyWith(
                       color: AppColors.baseLight20,
-                    )),
+                    ),),
             TextButton.icon(
               onPressed: () {},
               label: Text('Sign up with Google',
                   style: Theme.of(context)
                       .textTheme
                       .labelMedium
-                      ?.copyWith(fontWeight: FontWeight.w700)),
+                      ?.copyWith(fontWeight: FontWeight.w700),),
               icon: SvgPicture.asset(
                 AssetFile.googleIcon,
               ),
@@ -73,7 +73,7 @@ class SignUpView extends CubitWidget<SignUpCubit, SignUpState> {
                   borderRadius: BorderRadius.circular(Dimensions.custom10),
                 ),
                 side: const BorderSide(color: AppColors.baseLight20),
-                minimumSize: Size(double.infinity, 50),
+                minimumSize: const Size(double.infinity, 50),
               ),
             ),
             //already have an account
@@ -87,7 +87,7 @@ class SignUpView extends CubitWidget<SignUpCubit, SignUpState> {
                 ),
               ],
             ),
-          ]),
+          ],),
         ),
       ),
     );

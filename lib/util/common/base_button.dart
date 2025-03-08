@@ -15,7 +15,7 @@ class BaseButton extends StatelessWidget {
   });
   final Color textColor;
   final Color backgroundColor;
-  final Function onPressed;
+  final VoidCallback onPressed;
   final double width;
   final double height;
   final bool withIcon;
@@ -29,7 +29,7 @@ class BaseButton extends StatelessWidget {
       height: height,
       child: withIcon
           ? ElevatedButton.icon(
-              onPressed: () => onPressed(),
+              onPressed: onPressed,
               label: Text(label),
               icon: const Icon(Icons.add),
               style: ButtonStyle(
@@ -43,7 +43,7 @@ class BaseButton extends StatelessWidget {
               ),
             )
           : TextButton(
-              onPressed: () => onPressed(),
+              onPressed: onPressed,
               style: ButtonStyle(
                 shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(

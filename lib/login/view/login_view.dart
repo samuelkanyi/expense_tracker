@@ -3,6 +3,8 @@ import 'package:expense_tracker/widget/cubit_widget.dart';
 import 'package:flutter/material.dart';
 
 class LoginView extends CubitWidget<LoginCubit, LoginState> {
+  const LoginView({super.key});
+
 
   @override
   Widget build(BuildContext context, LoginCubit cubit, LoginState state) {
@@ -34,7 +36,7 @@ class LoginView extends CubitWidget<LoginCubit, LoginState> {
               },
               child: const Text('Login'),
             ),
-          ]),
+          ],),
         ),
       ),
     );

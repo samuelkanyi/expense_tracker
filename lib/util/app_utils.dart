@@ -3,16 +3,10 @@ import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 
 void logThis(dynamic message) {
-  final Logger logger = Logger(
+  final logger = Logger(
     printer: PrettyPrinter(
-      methodCount: 2,
-      errorMethodCount: 8,
-      lineLength: 120,
-      colors: true,
-      printEmojis: true,
-      printTime: true,
+      dateTimeFormat: DateTimeFormat.onlyTimeAndSinceStart,
     ),
-    filter: null,
   );
 
   //only log in debug mode
@@ -28,11 +22,11 @@ enum PasswordCondition {
 
 bool isConditionSatisfied(String password, PasswordCondition condition) {
   if (condition == PasswordCondition.capitalLetter) {
-    return password.contains(RegExp(r'[A-Z]'));
+    return password.contains(RegExp('[A-Z]'));
   } else if (condition == PasswordCondition.number) {
-    return password.contains(RegExp(r'[0-9]'));
+    return password.contains(RegExp('[0-9]'));
   } else if (condition == PasswordCondition.smallLetter) {
-    return password.contains(RegExp(r'[a-z]'));
+    return password.contains(RegExp('[a-z]'));
   } else {
     return false;
   }

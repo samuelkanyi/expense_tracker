@@ -1,7 +1,10 @@
 import 'dart:async';
 
 extension FutureExtension<T> on Future<T> {
-  Future<T> timeout(Duration duration, {required Future<T> Function() onTimeout}) {
+  Future<T> timeout(
+    Duration duration, {
+    required Future<T> Function() onTimeout,
+  }) {
     return Future.any([this, Future.delayed(duration, onTimeout)]);
   }
 

@@ -1,11 +1,9 @@
 import 'package:expense_tracker/app/routing/router_names.dart';
-import 'package:expense_tracker/l10n/l10n.dart';
 import 'package:expense_tracker/guide_screens/cubit/login_guide_cubit.dart';
-import 'package:expense_tracker/sign_up/view/sign_up_view.dart';
+import 'package:expense_tracker/l10n/l10n.dart';
 import 'package:expense_tracker/util/app_utils.dart';
 import 'package:expense_tracker/util/colors.dart';
 import 'package:expense_tracker/util/common/base_button.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';

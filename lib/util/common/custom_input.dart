@@ -3,14 +3,15 @@ import 'package:expense_tracker/util/dimensions.dart';
 import 'package:flutter/material.dart';
 
 class CustomInput extends StatefulWidget {
-  CustomInput({
+  const CustomInput({
+    required this.controller,
+    required this.onChanged,
+    super.key,
     this.labelText = '',
     this.hintText = '',
     this.isPassword = false,
     this.hasSuffixIcon = false,
     this.suffixIcon = Icons.visibility,
-    required this.controller,
-    required this.onChanged,
     this.error = false,
   });
   final String labelText;
@@ -19,7 +20,7 @@ class CustomInput extends StatefulWidget {
   final bool hasSuffixIcon;
   final IconData suffixIcon;
   final TextEditingController controller;
-  final Function(String) onChanged;
+  final void Function(String) onChanged;
   final bool error;
 
   @override
@@ -31,7 +32,9 @@ class _CustomInputState extends State<CustomInput> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-          horizontal: Dimensions.paddingL, vertical: Dimensions.paddingM),
+        horizontal: Dimensions.paddingL,
+        vertical: Dimensions.paddingM,
+      ),
       child: TextField(
         controller: widget.controller,
         onChanged: widget.onChanged,
