@@ -1,9 +1,8 @@
 import 'package:expense_tracker/app/routing/app_navigator.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class AppHeader extends StatelessWidget {
-  const AppHeader({Key? key, required this.label}) : super(key: key);
+  const AppHeader({required this.label, super.key});
   final String label;
   @override
   Widget build(BuildContext context) {
@@ -11,7 +10,7 @@ class AppHeader extends StatelessWidget {
       child: Row(
         children: [
           IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             onPressed: () => context.navigateToHome(),
           ),
           Expanded(child: Container()),
