@@ -19,18 +19,18 @@ final router = GoRouter(
       path: RouterNames.signUp,
       pageBuilder: (context, state) => MaterialPage(
         key: state.pageKey,
-        child: SignUpView(),
+        child: const SignUpView(),
       ),
     ),
     GoRoute(
       path: RouterNames.login,
       pageBuilder: (context, state) => MaterialPage(
         key: state.pageKey,
-        child: LoginView(),
+        child: const LoginView(),
       ),
     ),
   ],
-  observers: [CustomNavigationObserver()]
+  observers: [CustomNavigationObserver()],
 );
 
 extension NavigationExtension on BuildContext {
