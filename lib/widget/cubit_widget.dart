@@ -5,9 +5,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// This widget helps you perform repetitive tasks involving Cubits.
 /// But it has some limitations:
-/// - It is harder to do stateful widget - this is for situations if you want to have cubit and some local state (outside of cubit)
+/// - It is harder to do stateful widget - this is for situations 
+/// if you want to have cubit and some local state (outside of cubit)
 abstract class CubitWidget<T extends Cubit<S>, S> extends StatefulWidget {
-  const CubitWidget({Key? key}) : super(key: key);
+  const CubitWidget({super.key});
 
   @override
   CubitWidgetState<T, S> createState() => CubitWidgetState<T, S>();
@@ -19,7 +20,7 @@ abstract class CubitWidget<T extends Cubit<S>, S> extends StatefulWidget {
 
 class CubitWidgetState<T extends Cubit<S>, S> extends State<CubitWidget<T, S>> {
   late final T _cubit = getIt.get();
-  
+
   @override
   void initState() {
     super.initState();
