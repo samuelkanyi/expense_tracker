@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 extension DateTimeExtension on DateTime {
@@ -13,9 +12,9 @@ extension DateTimeExtension on DateTime {
   DateTime get onlyDate => DateTime(year, month, day);
 
   DateTime withTime([int hour = 0, int minute = 0]) => DateTime(
-        this.year,
-        this.month,
-        this.day,
+        year,
+        month,
+        day,
         hour,
         minute,
       );
