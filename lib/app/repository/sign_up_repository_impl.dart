@@ -5,7 +5,6 @@ import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 @Injectable(as: SignUpRepository)
-@injectable
 class SignUpRepositoryImpl extends SignUpRepository {
   SignUpRepositoryImpl() {
     client = getIt<SupabaseClient>();
