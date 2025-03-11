@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^9.0.0
+  flutter_dotenv: ^5.2.1
   flutter_localizations:
     sdk: flutter
   flutter_native_splash: ^2.4.5
@@ -44,6 +45,7 @@ flutter:
     - assets/
     - assets/illustrations/
     - assets/icons/
+    - .env
 # flutter native splash screen
 flutter_native_splash:
   color: "#7F3DFF"
