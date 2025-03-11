@@ -68,7 +68,6 @@ class LoginGuideView extends StatelessWidget {
                 const SizedBox(height: 20),
                 PrimaryButton(
                   onPressed: () {
-                    logThis('Sign Up button pressed');
                     context.go(RouterNames.signUp);
                   },
                   label: 'Sign Up',
@@ -77,7 +76,6 @@ class LoginGuideView extends StatelessWidget {
                 const SizedBox(height: 16),
                 SecondaryButton(
                   onPressed: () {
-                    logThis('Sign Up button pressed');
                     context.go(RouterNames.login);
                   },
                   label: 'Log In',

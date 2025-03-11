@@ -1,7 +1,8 @@
 import 'package:expense_tracker/app/app.dart';
 import 'package:expense_tracker/bootstrap.dart';
 import 'package:expense_tracker/util/app_utils.dart';
-import 'package:logger/logger.dart';
+import 'package:flutter/foundation.dart';
+import 'package:logging/logging.dart';
 
 void main() {
   _setupLogging();
@@ -9,9 +10,10 @@ void main() {
 }
 
 void _setupLogging() {
-  Logger.level = Level.all;
-  Logger.addLogListener((logEvent){
-      logThis('${logEvent.level.name}: ${logEvent.time}: ${logEvent.message}');
-    
+  Logger.root.level = Level.ALL;
+  Logger.root.onRecord.listen((rec) {
+    if (kDebugMode) {
+      logThis('${rec.level.name}: ${rec.time}: ${rec.message}');
+    }
   });
 }
