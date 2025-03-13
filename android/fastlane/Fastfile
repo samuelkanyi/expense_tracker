@@ -1,0 +1,47 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  desc "Runs all the tests"
+  lane :test do
+    gradle(task: "test")
+  end
+
+  desc "Build and distribute the Android app to Firebase App Distribution"
+  lane :distribute_to_firebase do
+    sh("flutter build apk --release --target lib/main_development.dart")
+    # Upload to Firebase App Distribution
+    firebase_app_distribution(
+      app: ENV["ANDROID_FIREBASE_APP_I"], # Firebase App ID
+      firebase_cli_token: ENV["FIREBASE_TOKEN"], # Firebase CLI token
+      groups: "testers", # Comma-separated list of tester groups
+      release_notes: "Fastlane integration",
+      apk_path: "../build/app/outputs/flutter-apk/app-release.apk"
+    )
+  end
+
+  desc "Add testers"
+  lane :add_testers do
+    firebase_app_distribution(
+      app: ENV["ANDROID_FIREBASE_APP_ID"],
+      firebase_cli_token: ENV["FIREBASE_TOKEN"],
+      groups: "testers", # Tester groups
+      testers: "amshelkanyi@gmail.com,amshelhack3r@gmail.com", # Optional: Directly specify testers
+      release_notes: "Fastlane integration",
+      apk_path: "../build/app/outputs/flutter-apk/app-release.apk"
+    )
+end

@@ -1,40 +1,62 @@
-name: Deploy Flutter App to Firebase App Distribution (Android)
+name: Build and Deploy Android to Firebase App Distribution
 
 on:
   push:
     branches:
-      - main  # Trigger deployment when pushing to the master branch (or adjust to your preferred branch)
+      - main # Trigger on pushes to the main branch
+    tags:
+      - v* # Optional: Trigger on version tags (e.g., v1.0.0)
 
 jobs:
-  build:
-    runs-on: ubuntu-latest  # Use the latest version of Ubuntu for the build environment
+  build-and-deploy:
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3  # Check out the repository to the runner
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
 
+      # Set up Java (required for Android builds)
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu' # Use Zulu OpenJDK
+          java-version: '11' # Java 11 is required for Flutter Android builds
+
+      # Set up Flutter
       - name: Set up Flutter
-        uses: subosito/flutter-action@v2  # Set up Flutter on the runner
+        uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.29.0' # Specify the Flutter version to use
+          flutter-version: '3.13.0' # Replace with your Flutter version
+          channel: 'stable'
 
-      - name: Install dependencies
-        run: flutter pub get  # Install Flutter dependencies defined in pubspec.yaml
-
-      - name: Create google-services.json
-        env:
-          DATA: ${{secrets.GOOGLE_SERVICES_JSON}}  # Your base64-encoded secret
+      # Install Fastlane
+      - name: Install Fastlane
         run: |
-          mkdir -p android/app
-          echo "$DATA" | base64 -di > android/app/google-services.json
-          
-      - name: Build APK for Android
-        run: flutter build apk --release --target lib/main_development.dart  # Build the release APK for Android
+          sudo gem install fastlane -NV
 
-      - name: Deploy to Firebase App Distribution
-        uses: wzieba/Firebase-Distribution-Github-Action@v1  # Use Firebase Distribution GitHub Action to deploy
-        with:
-          appId: ${{secrets.ANDROID_FIREBASE_APP_ID}}  # Firebase App ID for Android
-          serviceCredentialsFileContent: ${{secrets.SERVICE_ACCOUNT_KEY}}  # Firebase service account key for authentication
-          groups: testers  # Distribution group(s) to receive the app
-          file: build/app/outputs/flutter-apk/app-release.apk  # Path to the built APK file
+      # Install Firebase CLI (required for Firebase App Distribution)
+      - name: Install Firebase CLI
+        run: |
+          npm install -g firebase-tools
+
+      # Set up environment variables
+      - name: Set up environment variables
+        env:
+          ANDROID_FIREBASE_APP_ID: ${{ secrets.ANDROID_FIREBASE_APP_ID }}
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        run: |
+          echo "ANDROID_FIREBASE_APP_ID=$ANDROID_FIREBASE_APP_ID" >> $GITHUB_ENV
+          echo "FIREBASE_TOKEN=$FIREBASE_TOKEN" >> $GITHUB_ENV
+
+      # Build and deploy using Fastlane
+      - name: Run Fastlane
+        run: |
+          cd android
+          fastlane distribute_to_firebase
+
+      # add testers to Firebase App Distribution
+      - name: Add Testers
+        run: |
+          cd android
+          fastlane add_testers
