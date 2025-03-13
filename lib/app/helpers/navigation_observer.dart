@@ -28,15 +28,20 @@ class CustomNavigationObserver extends NavigatorObserver {
 
   @override
   void didStartUserGesture(
-      Route<dynamic> route, Route<dynamic>? previousRoute,) {
+    Route<dynamic> route,
+    Route<dynamic>? previousRoute,
+  ) {
     _logNavigation('start user gesture', route, previousRoute);
     super.didStartUserGesture(route, previousRoute);
   }
 
-
   void _logNavigation(
-      String action, Route<dynamic> route, Route<dynamic>? previousRoute,) {
+    String action,
+    Route<dynamic> route,
+    Route<dynamic>? previousRoute,
+  ) {
     logThis(
-        'Navigation: $action, route: $route, previousRoute: $previousRoute',);
+      'Navigation: $action, route: $route, previousRoute: $previousRoute',
+    );
   }
 }
