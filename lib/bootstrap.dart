@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
-
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 import 'package:bloc/bloc.dart';
 import 'package:expense_tracker/injection/injection.dart';
 import 'package:flutter/widgets.dart';
@@ -29,7 +30,9 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   Bloc.observer = const AppBlocObserver();
 
   // Add cross-flavor configuration here
-
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   //add injection
   configureInjection('development');
 
