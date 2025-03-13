@@ -42,6 +42,25 @@
           "other_platform_oauth_client": []
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:144310334194:android:88ac33a2fd2188a7e0d66b",
+        "android_client_info": {
+          "package_name": "com.amshelkanyi.dev.expense_tracker.stg"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5cw-9eMfg1WbaeahTSGVsps5DJs3TJpg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
     }
 
   ],
