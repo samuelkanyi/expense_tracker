@@ -2,8 +2,7 @@ name: Build and Deploy Android to Firebase App Distribution
 
 on:
   push:
-    branches:
-      - main # Trigger on pushes to the main branch
+    branches: [main, feature/setup-fastlane] # Trigger on pushes to the main branc
     tags:
       - v* # Optional: Trigger on version tags (e.g., v1.0.0)
 
@@ -33,7 +32,13 @@ jobs:
       # Install Fastlane
       - name: Install Fastlane
         run: |
-          sudo gem install fastlane -NV
+          gem install fastlane --user-install
+
+      # install bundle on android directory
+      - name: Install bundle
+        run: |
+          cd android
+          bundle install
 
       # Install Firebase CLI (required for Firebase App Distribution)
       - name: Install Firebase CLI
