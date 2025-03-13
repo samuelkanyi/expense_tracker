@@ -34,12 +34,6 @@ jobs:
         run: |
           gem install fastlane --user-install
 
-      # install bundle on android directory
-      - name: Install bundle
-        run: |
-          cd android
-          bundle install
-
       # Install Firebase CLI (required for Firebase App Distribution)
       - name: Install Firebase CLI
         run: |
