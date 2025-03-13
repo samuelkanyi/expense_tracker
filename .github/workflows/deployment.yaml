@@ -50,8 +50,12 @@ jobs:
         run: |
           echo "ANDROID_FIREBASE_APP_ID=$ANDROID_FIREBASE_APP_ID" >> $GITHUB_ENV
           echo "FIREBASE_TOKEN=$FIREBASE_TOKEN" >> $GITHUB_ENV
+      
+      # build apk
+      - name: Build APK
+        run: flutter build apk --release --target lib/main_development.dart
 
-      # Build and deploy using Fastlane
+      # deploy using Fastlane
       - name: Run Fastlane
         run: |
           cd android
