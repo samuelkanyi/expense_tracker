@@ -29,10 +29,22 @@ jobs:
           flutter-version: '3.13.0' # Replace with your Flutter version
           channel: 'stable'
 
+      # install ruby
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+
       # Install Fastlane
       - name: Install Fastlane
         run: |
           gem install fastlane --user-install
+
+      # install bundle on android directory
+      - name: Install bundle
+        run: |
+          cd android
+          bundle install
 
       # Install Firebase CLI (required for Firebase App Distribution)
       - name: Install Firebase CLI
@@ -52,10 +64,10 @@ jobs:
       - name: Run Fastlane
         run: |
           cd android
-          fastlane distribute_to_firebase
+          bundle exec fastlane distribute_to_firebase
 
       # add testers to Firebase App Distribution
       - name: Add Testers
         run: |
           cd android
-          fastlane add_testers
+          bundle exec fastlane add_testers
