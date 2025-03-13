@@ -33,23 +33,14 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.0'
-
-      # Install Fastlane
-      - name: Install Fastlane
-        run: |
-          gem install fastlane --user-install
+          ruby-version: '3.3.7'
+          bundler-cache: true
 
       # install bundle on android directory
-      - name: Install bundle
+      - name: Install dependencies
         run: |
           cd android
           bundle install
-
-      # Install Firebase CLI (required for Firebase App Distribution)
-      - name: Install Firebase CLI
-        run: |
-          npm install -g firebase-tools
 
       # Set up environment variables
       - name: Set up environment variables
