@@ -53,7 +53,7 @@ jobs:
       
       # build apk
       - name: Build APK
-        run: flutter build apk --flavor development --target lib/main_development.dart
+        run: flutter build apk --flavor development --verbose --target lib/main_development.dart
 
       # deploy using Fastlane
       - name: Run Fastlane
