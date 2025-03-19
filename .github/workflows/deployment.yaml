@@ -7,7 +7,7 @@ on:
       - v* # Optional: Trigger on version tags (e.g., v1.0.0)
 env:
   SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
-  
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -55,13 +55,15 @@ jobs:
       
       - name: Set up Shorebird
         uses: shorebirdtech/setup-shorebird@v1
+        with:
+          cache: true
 
 
       - name: Release Shorebird
         uses: shorebirdtech/shorebird-release@v1
         id: shorebird-release
         with:
-          args: --verbose --flavor=development --target=lib/main_development.dart
+          args:  --flavor=development --target=lib/main_development.dart
           flutter-version: 3.29.2
           platform: android
           working-directory: ${{ github.workspace }}/android
