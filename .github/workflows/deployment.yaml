@@ -51,9 +51,19 @@ jobs:
           echo "ANDROID_FIREBASE_APP_ID=$ANDROID_FIREBASE_APP_ID" >> $GITHUB_ENV
           echo "FIREBASE_TOKEN=$FIREBASE_TOKEN" >> $GITHUB_ENV
       
-      # build apk
-      - name: Build APK
-        run: flutter build apk --flavor development --target lib/main_development.dart
+      - name: Set up Shorebird
+        uses: shorebirdtech/setup-shorebird@v1
+
+
+      - name: Release Shorebird
+        uses: shorebirdtech/shorebird-release@v1
+        id: shorebird-release
+        with:
+          args: --verbose --flavor=development --target=lib/main_development.dart
+          flutter-version: 3.29.2
+          platform: android
+          working-directory: ./android
+          
 
       # deploy using Fastlane
       - name: Run Fastlane
