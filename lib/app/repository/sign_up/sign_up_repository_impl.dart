@@ -1,5 +1,5 @@
 import 'package:expense_tracker/app/models/signup/sign_up_model.dart';
-import 'package:expense_tracker/app/repository/sign_up_repository.dart';
+import 'package:expense_tracker/app/repository/sign_up/sign_up_repository.dart';
 import 'package:expense_tracker/injection/injection.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
