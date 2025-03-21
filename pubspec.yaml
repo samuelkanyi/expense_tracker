@@ -9,6 +9,7 @@ environment:
 dependencies:
   bloc: ^9.0.0
   email_validator: ^3.0.0
+  firebase_core: ^3.12.1
   flutter:
     sdk: flutter
   flutter_bloc: ^9.0.0
@@ -46,7 +47,7 @@ flutter:
     - assets/
     - assets/illustrations/
     - assets/icons/
-    - .env
+    - shorebird.yaml
 # flutter native splash screen
 flutter_native_splash:
   color: "#7F3DFF"

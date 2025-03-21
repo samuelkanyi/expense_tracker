@@ -2,10 +2,11 @@ name: Build and Deploy Android to Firebase App Distribution
 
 on:
   push:
-    branches:
-      - main # Trigger on pushes to the main branch
+    branches: [main, feature/setup-fastlane] # Trigger on pushes to the main branc
     tags:
       - v* # Optional: Trigger on version tags (e.g., v1.0.0)
+env:
+  SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
 
 jobs:
   build-and-deploy:
@@ -21,24 +22,27 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'zulu' # Use Zulu OpenJDK
-          java-version: '11' # Java 11 is required for Flutter Android builds
+          java-version: '17' # Java 11 is required for Flutter Android builds
 
       # Set up Flutter
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.13.0' # Replace with your Flutter version
+          flutter-version: '3.29.0' # Replace with your Flutter version
           channel: 'stable'
 
-      # Install Fastlane
-      - name: Install Fastlane
-        run: |
-          sudo gem install fastlane -NV
+      # install ruby
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3.7'
+          bundler-cache: true
 
-      # Install Firebase CLI (required for Firebase App Distribution)
-      - name: Install Firebase CLI
+      # install bundle on android directory
+      - name: Install dependencies
         run: |
-          npm install -g firebase-tools
+          cd android
+          bundle install
 
       # Set up environment variables
       - name: Set up environment variables
@@ -48,15 +52,31 @@ jobs:
         run: |
           echo "ANDROID_FIREBASE_APP_ID=$ANDROID_FIREBASE_APP_ID" >> $GITHUB_ENV
           echo "FIREBASE_TOKEN=$FIREBASE_TOKEN" >> $GITHUB_ENV
+      
+      - name: Set up Shorebird
+        uses: shorebirdtech/setup-shorebird@v1
+        with:
+          cache: true
 
-      # Build and deploy using Fastlane
+
+      - name: Release Shorebird
+        uses: shorebirdtech/shorebird-release@v1
+        id: shorebird-release
+        with:
+          args:  --flavor=development --target=lib/main_development.dart
+          flutter-version: 3.29.2
+          platform: android
+          working-directory: ${{ github.workspace }}/android
+
+
+      # deploy using Fastlane
       - name: Run Fastlane
         run: |
           cd android
-          fastlane distribute_to_firebase
+          bundle exec fastlane distribute_to_firebase
 
       # add testers to Firebase App Distribution
       - name: Add Testers
         run: |
           cd android
-          fastlane add_testers
+          bundle exec fastlane add_testers
