@@ -23,5 +23,10 @@
     "guide_screen_3_desc": "Setup your budget for each category so you in control",
     "@guide_screen_3_desc": {
         "description": "Text shown in login guide screens "
+    },
+    "login_failed": "Login Failed",
+    "@login_failed": {
+        "description": "Text shown when login fails"
     }
+
 }

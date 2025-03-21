@@ -33,7 +33,6 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final externalDependenciesModule = _$ExternalDependenciesModule();
-    gh.factory<_i780.LoginCubit>(() => _i780.LoginCubit());
     gh.singleton<_i454.SupabaseClient>(
         () => externalDependenciesModule.supabaseClient);
     gh.factory<_i118.SignUpRepository>(() => _i169.SignUpRepositoryImpl());
@@ -41,6 +40,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i637.SignUpCubit(gh<_i118.SignUpRepository>()));
     gh.factory<_i494.LoginRepository>(
         () => _i1043.LoginRepositoryImpl(gh<_i454.SupabaseClient>()));
+    gh.factory<_i780.LoginCubit>(
+        () => _i780.LoginCubit(gh<_i494.LoginRepository>()));
     return this;
   }
 }

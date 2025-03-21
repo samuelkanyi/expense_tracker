@@ -5,15 +5,15 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 @Injectable(as: LoginRepository)
 class LoginRepositoryImpl implements LoginRepository {
-  late final SupabaseClient _supabaseClient;
-  late GoTrueClient _auth;
   LoginRepositoryImpl(this._supabaseClient) {
     _supabaseClient = getIt<SupabaseClient>();
     _auth = _supabaseClient.auth;
   }
+  late final SupabaseClient _supabaseClient;
+  late GoTrueClient _auth;
 
   @override
-  Future<AuthResponse> login(
+  Future<AuthResponse> signInEmail(
     String email,
     String password,
   ) async {
@@ -29,34 +29,7 @@ class LoginRepositoryImpl implements LoginRepository {
     }
   }
 
-  /// Sign in with phone number and OTP
-  Future<void> signInWithPhone({
-    required String phone,
-    required String otp,
-  }) async {
-    try {
-      await _auth.verifyOTP(
-        phone: phone,
-        token: otp,
-        type: OtpType.sms,
-      );
-    } catch (error) {
-      rethrow;
-    }
-  }
-
-  /// Send OTP to phone number
-  Future<void> sendOtpToPhone({required String phone}) async {
-    try {
-      await _auth.signInWithOtp(
-        phone: phone,
-      );
-    } catch (error) {
-      rethrow;
-    }
-  }
-
-  /// Sign out the current user
+  @override
   Future<void> signOut() async {
     try {
       await _auth.signOut();
@@ -65,7 +38,7 @@ class LoginRepositoryImpl implements LoginRepository {
     }
   }
 
-  /// Reset password
+  @override
   Future<void> resetPassword({required String email}) async {
     try {
       await _auth.resetPasswordForEmail(email);
@@ -74,7 +47,7 @@ class LoginRepositoryImpl implements LoginRepository {
     }
   }
 
-  /// Update password of authenticated user
+  @override
   Future<UserResponse> updatePassword({required String newPassword}) async {
     try {
       final response = await _auth.updateUser(
@@ -87,12 +60,12 @@ class LoginRepositoryImpl implements LoginRepository {
     }
   }
 
-  /// Get the current logged in user
+  @override
   User? get currentUser => _auth.currentUser;
 
-  /// Check if a user is logged in
+  @override
   bool get isAuthenticated => _auth.currentUser != null;
 
-  /// Stream of auth state changes
+  @override
   Stream<AuthState> get onAuthStateChange => _auth.onAuthStateChange;
 }
