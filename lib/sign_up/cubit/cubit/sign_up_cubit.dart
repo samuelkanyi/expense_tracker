@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:expense_tracker/app/models/signup/sign_up_model.dart';
-import 'package:expense_tracker/app/repository/sign_up_repository.dart';
+import 'package:expense_tracker/app/repository/sign_up/sign_up_repository.dart';
 import 'package:expense_tracker/injection/injection.dart';
 import 'package:expense_tracker/sign_up/cubit/cubit/sign_up_state.dart';
 import 'package:injectable/injectable.dart';
