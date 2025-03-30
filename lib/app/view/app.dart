@@ -26,7 +26,7 @@ class _AppState extends State<App> {
       key: GlobalKey(),
       theme: appTheme,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supporatedLocales,
+      supportedLocales: AppLocalizations.supportedLocales,
       debugShowCheckedModeBanner: false,
     );
   }

@@ -1,24 +1,13 @@
 import 'package:expense_tracker/app/routing/app_navigator.dart';
 import 'package:expense_tracker/login/cubit/cubit/login_cubit.dart';
-import 'package:expense_tracker/sign_up/cubit/cubit/sign_up_cubit.dart';
-import 'package:expense_tracker/sign_up/cubit/cubit/sign_up_state.dart';
 import 'package:expense_tracker/util/colors.dart';
 import 'package:expense_tracker/util/common/base_button.dart';
 import 'package:expense_tracker/util/common/custom_input.dart';
 import 'package:expense_tracker/widget/cubit_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginView extends CubitWidget<LoginCubit, LoginState> {
-  LoginView({super.key});
-  bool _obscurePassword = true;
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-  }
+  const LoginView({super.key});
 
   @override
   Widget build(BuildContext context, LoginCubit cubit, LoginState state) {

@@ -1,8 +1,10 @@
 import 'package:expense_tracker/app/routing/app_navigator.dart';
-import 'package:expense_tracker/settings/cubit/setting_cubit.dart';
+import 'package:expense_tracker/app/routing/router_names.dart';
+import 'package:expense_tracker/settings/main/cubit/setting_cubit.dart';
 import 'package:expense_tracker/util/common/base_button.dart';
 import 'package:expense_tracker/widget/cubit_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SettingsView extends CubitWidget<SettingCubit, SettingState> {
   const SettingsView({Key? key}) : super(key: key);
@@ -107,7 +109,7 @@ class SettingsView extends CubitWidget<SettingCubit, SettingState> {
                   icon: Icons.language_outlined,
                   title: 'Language',
                   subtitle: 'English (US)',
-                  onTap: () {},
+                  onTap: () => context.go(RouterNames.language_selection),
                 ),
                 const SizedBox(height: 30),
                 // App Settings
@@ -157,7 +159,7 @@ class SettingsView extends CubitWidget<SettingCubit, SettingState> {
                 ),
                 // Logout button
                 PrimaryButton(
-                  onPressed: () => context.navigateToHome(),
+                  onPressed: () => context.go(RouterNames.home),
                   label: 'Logout',
                 )
               ],

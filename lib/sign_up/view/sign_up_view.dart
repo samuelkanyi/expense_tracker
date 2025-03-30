@@ -1,4 +1,5 @@
 import 'package:expense_tracker/app/routing/app_navigator.dart';
+import 'package:expense_tracker/l10n/l10n.dart';
 import 'package:expense_tracker/sign_up/cubit/cubit/sign_up_cubit.dart';
 import 'package:expense_tracker/sign_up/cubit/cubit/sign_up_state.dart';
 import 'package:expense_tracker/util/common/base_button.dart';
@@ -12,14 +13,15 @@ class SignUpView extends CubitWidget<SignUpCubit, SignUpState> {
   SignUpView({super.key});
   bool _acceptTerms = false;
   @override
-  Widget build(BuildContext context, SignUpCubit sign_up_cubit,
-      SignUpState sign_up_state) {
+  Widget build(
+      BuildContext context, SignUpCubit signUpCubit, SignUpState signUpState) {
+    final S = context.l10n;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(24.0),
+            padding: const EdgeInsets.all(24),
             child: Column(
               children: [
                 const SizedBox(height: 40),
@@ -32,9 +34,9 @@ class SignUpView extends CubitWidget<SignUpCubit, SignUpState> {
                       ],
                     ).createShader(bounds);
                   },
-                  child: const Text(
-                    'Sign Up',
-                    style: TextStyle(
+                  child: Text(
+                    S.signup,
+                    style: const TextStyle(
                       fontSize: 40,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
@@ -43,7 +45,7 @@ class SignUpView extends CubitWidget<SignUpCubit, SignUpState> {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Create your account to get started',
+                  S.create_account,
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.grey[600],
@@ -52,21 +54,21 @@ class SignUpView extends CubitWidget<SignUpCubit, SignUpState> {
                 const SizedBox(height: 40),
 
                 // Form Fields
-                const CustomTextField(
-                  label: 'Full Name',
-                  hintText: 'John Doe',
+                CustomTextField(
+                  label: S.fullname,
+                  hintText: S.fullname_hint,
                   icon: Icons.person_outline,
                 ),
                 const SizedBox(height: 20),
-                const CustomTextField(
-                  label: 'Email Address',
-                  hintText: 'john@example.com',
+                CustomTextField(
+                  label: S.email,
+                  hintText: S.email_hint,
                   icon: Icons.email_outlined,
                   keyboardType: TextInputType.emailAddress,
                 ),
                 const SizedBox(height: 20),
-                const CustomTextField(
-                  label: 'Password',
+                CustomTextField(
+                  label: S.password,
                   hintText: '••••••••',
                   icon: Icons.lock_outline,
                   obscureText: true,
@@ -106,17 +108,17 @@ class SignUpView extends CubitWidget<SignUpCubit, SignUpState> {
                             fontSize: 14,
                           ),
                           children: [
-                            const TextSpan(text: 'I agree to the '),
+                            TextSpan(text: S.i_agree_terms_1),
                             TextSpan(
-                              text: 'Terms',
+                              text: S.i_agree_terms_2,
                               style: TextStyle(
                                 color: Theme.of(context).colorScheme.primary,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            const TextSpan(text: ' and '),
+                            TextSpan(text: S.i_agree_terms_3),
                             TextSpan(
-                              text: 'Privacy Policy',
+                              text: S.i_agree_terms_4,
                               style: TextStyle(
                                 color: Theme.of(context).colorScheme.primary,
                                 fontWeight: FontWeight.w500,
@@ -135,7 +137,7 @@ class SignUpView extends CubitWidget<SignUpCubit, SignUpState> {
                   onPressed: () {
                     context.navigateToHome();
                   },
-                  label: 'Sign up',
+                  label: context.l10n.signup,
                 ),
 
                 // Divider
@@ -151,7 +153,7 @@ class SignUpView extends CubitWidget<SignUpCubit, SignUpState> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: Text(
-                          'or sign up with',
+                          S.alternate_signup,
                           style: TextStyle(
                             color: Colors.grey[600],
                             fontSize: 14,
@@ -194,7 +196,7 @@ class SignUpView extends CubitWidget<SignUpCubit, SignUpState> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Already have an account? ',
+                      S.already_have_account,
                       style: TextStyle(
                         color: Colors.grey[600],
                         fontSize: 14,
@@ -203,7 +205,7 @@ class SignUpView extends CubitWidget<SignUpCubit, SignUpState> {
                     GestureDetector(
                       onTap: () => context.goToLogin(),
                       child: Text(
-                        'Log in',
+                        S.login,
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.primary,
                           fontSize: 14,
