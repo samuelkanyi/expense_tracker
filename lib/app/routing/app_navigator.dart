@@ -45,4 +45,5 @@ extension NavigationExtension on BuildContext {
   void back() => GoRouter.of(this).pop();
   void navigateToHome() => GoRouter.of(this).go(RouterNames.dashboard);
   void navigateToSignUp() => GoRouter.of(this).go(RouterNames.signUp);
+  void goToLogin() => GoRouter.of(this).go(RouterNames.login);
 }

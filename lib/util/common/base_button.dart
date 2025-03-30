@@ -43,7 +43,7 @@ class BaseButton extends StatelessWidget {
               ),
             )
           : ElevatedButton(
-              onPressed: () {},
+              onPressed: onPressed,
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
                 backgroundColor: Theme.of(context).colorScheme.primary,

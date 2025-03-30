@@ -13,12 +13,12 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  
   @override
   void initState() {
     super.initState();
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
@@ -28,7 +28,6 @@ class _AppState extends State<App> {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       debugShowCheckedModeBanner: false,
-      
     );
   }
 }
