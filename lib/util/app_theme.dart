@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 final ThemeData appTheme = ThemeData(
-  fontFamily: GoogleFonts.inter().fontFamily,
+  fontFamily: GoogleFonts.poppins().fontFamily,
   useMaterial3: true,
+  colorScheme: const ColorScheme.light(
+      primary: AppColors.primary,
+      secondary: AppColors.secondary,
+      tertiary: AppColors.tertiary),
   textTheme: const TextTheme(
     displayLarge: TextStyle(
       fontSize: 32,
@@ -69,7 +73,7 @@ final ThemeData appTheme = ThemeData(
   ),
   buttonTheme: ButtonThemeData(
     height: 50,
-    buttonColor: AppColors.violet100,
+    buttonColor: AppColors.primary,
     textTheme: ButtonTextTheme.primary,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10),
