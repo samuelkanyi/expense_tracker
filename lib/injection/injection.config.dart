@@ -13,8 +13,10 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:supabase_flutter/supabase_flutter.dart' as _i454;
 
-import '../app/repository/sign_up_repository.dart' as _i448;
-import '../app/repository/sign_up_repository_impl.dart' as _i555;
+import '../app/repository/login/login_repository.dart' as _i494;
+import '../app/repository/login/login_repository_impl.dart' as _i1043;
+import '../app/repository/sign_up/sign_up_repository.dart' as _i118;
+import '../app/repository/sign_up/sign_up_repository_impl.dart' as _i169;
 import '../login/cubit/cubit/login_cubit.dart' as _i780;
 import '../settings/main/cubit/setting_cubit.dart' as _i882;
 import '../sign_up/cubit/cubit/sign_up_cubit.dart' as _i637;
@@ -36,9 +38,13 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i882.SettingCubit>(() => _i882.SettingCubit());
     gh.singleton<_i454.SupabaseClient>(
         () => externalDependenciesModule.supabaseClient);
-    gh.factory<_i448.SignUpRepository>(() => _i555.SignUpRepositoryImpl());
+    gh.factory<_i118.SignUpRepository>(() => _i169.SignUpRepositoryImpl());
     gh.factory<_i637.SignUpCubit>(
-        () => _i637.SignUpCubit(gh<_i448.SignUpRepository>()));
+        () => _i637.SignUpCubit(gh<_i118.SignUpRepository>()));
+    gh.factory<_i494.LoginRepository>(
+        () => _i1043.LoginRepositoryImpl(gh<_i454.SupabaseClient>()));
+    gh.factory<_i780.LoginCubit>(
+        () => _i780.LoginCubit(gh<_i494.LoginRepository>()));
     return this;
   }
 }
