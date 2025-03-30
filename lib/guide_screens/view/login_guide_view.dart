@@ -1,3 +1,4 @@
+import 'package:expense_tracker/app/routing/app_navigator.dart';
 import 'package:expense_tracker/app/routing/router_names.dart';
 import 'package:expense_tracker/guide_screens/cubit/login_guide_cubit.dart';
 import 'package:expense_tracker/l10n/l10n.dart';
@@ -65,17 +66,13 @@ class LoginGuideView extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 PrimaryButton(
-                  onPressed: () {
-                    context.go(RouterNames.signUp);
-                  },
+                  onPressed: () => context.navigateToSignUp(),
                   label: 'Sign Up',
                   width: double.infinity,
                 ),
                 const SizedBox(height: 16),
                 SecondaryButton(
-                  onPressed: () {
-                    context.go(RouterNames.login);
-                  },
+                  onPressed: () => context.go(RouterNames.login),
                   label: 'Log In',
                   width: double.infinity,
                 ),

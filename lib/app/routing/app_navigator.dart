@@ -27,7 +27,7 @@ final router = GoRouter(
       path: RouterNames.login,
       pageBuilder: (context, state) => MaterialPage(
         key: state.pageKey,
-        child: const LoginView(),
+        child: LoginView(),
       ),
     ),
     GoRoute(

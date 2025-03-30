@@ -1,3 +1,4 @@
+import 'package:expense_tracker/app/routing/app_navigator.dart';
 import 'package:expense_tracker/sign_up/cubit/cubit/sign_up_cubit.dart';
 import 'package:expense_tracker/sign_up/cubit/cubit/sign_up_state.dart';
 import 'package:expense_tracker/util/common/base_button.dart';
@@ -131,7 +132,9 @@ class SignUpView extends CubitWidget<SignUpCubit, SignUpState> {
 
                 // Sign Up Button
                 PrimaryButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.navigateToHome();
+                  },
                   label: 'Sign up',
                 ),
 
@@ -198,7 +201,7 @@ class SignUpView extends CubitWidget<SignUpCubit, SignUpState> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () => context.goToLogin(),
                       child: Text(
                         'Log in',
                         style: TextStyle(
