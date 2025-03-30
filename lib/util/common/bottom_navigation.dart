@@ -17,7 +17,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
       color: Colors.white,
       elevation: 10,
       child: Container(
-        height: 60,
+        height: 70,
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -64,7 +64,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
       },
       borderRadius: BorderRadius.circular(12),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [

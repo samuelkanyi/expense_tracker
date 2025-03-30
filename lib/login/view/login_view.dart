@@ -1,8 +1,13 @@
+import 'package:expense_tracker/app/routing/app_navigator.dart';
 import 'package:expense_tracker/login/cubit/cubit/login_cubit.dart';
 import 'package:expense_tracker/sign_up/cubit/cubit/sign_up_cubit.dart';
 import 'package:expense_tracker/sign_up/cubit/cubit/sign_up_state.dart';
+import 'package:expense_tracker/util/colors.dart';
+import 'package:expense_tracker/util/common/base_button.dart';
+import 'package:expense_tracker/util/common/custom_input.dart';
 import 'package:expense_tracker/widget/cubit_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginView extends CubitWidget<LoginCubit, LoginState> {
   LoginView({super.key});
@@ -46,87 +51,26 @@ class LoginView extends CubitWidget<LoginCubit, LoginState> {
             children: [
               const SizedBox(height: 32),
               // Email Field
-              TextField(
-                controller: _emailController,
-                decoration: InputDecoration(
-                  hintText: 'Email',
-                  hintStyle: TextStyle(color: Colors.grey.shade500),
-                  filled: true,
-                  fillColor: Colors.white,
-                  contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 16.0, vertical: 16.0),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25),
-                    borderSide: BorderSide(color: Colors.grey.shade300),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25),
-                    borderSide: BorderSide(color: Colors.grey.shade300),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25),
-                    borderSide: BorderSide(color: Colors.grey.shade400),
-                  ),
-                ),
-                keyboardType: TextInputType.emailAddress,
+              const CustomTextField(
+                label: 'Email',
+                hintText: 'Email',
+                icon: Icons.email_outlined,
               ),
-              const SizedBox(height: 16),
-              // Password Field
-              TextField(
-                controller: _passwordController,
-                decoration: InputDecoration(
-                  hintText: 'Password',
-                  hintStyle: TextStyle(color: Colors.grey.shade500),
-                  filled: true,
-                  fillColor: Colors.white,
-                  contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 16.0, vertical: 16.0),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25),
-                    borderSide: BorderSide(color: Colors.grey.shade300),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25),
-                    borderSide: BorderSide(color: Colors.grey.shade300),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25),
-                    borderSide: BorderSide(color: Colors.grey.shade400),
-                  ),
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      _obscurePassword
-                          ? Icons.visibility_outlined
-                          : Icons.visibility_off_outlined,
-                      color: Colors.grey,
-                    ),
-                    onPressed: () {},
-                  ),
-                ),
-                obscureText: _obscurePassword,
+              const SizedBox(
+                height: 16,
               ),
+              const CustomTextField(
+                label: 'Password',
+                hintText: '••••••••',
+                icon: Icons.lock_outline,
+                obscureText: true,
+              ),
+
               const SizedBox(height: 24),
               // Login Button
-              ElevatedButton(
-                onPressed: () {
-                  // Handle login
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor:
-                      const Color(0xFF7E57C2), // Deep purple color from image
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  elevation: 0,
-                ),
-                child: const Text(
-                  'Login',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
+              PrimaryButton(
+                onPressed: () => context.navigateToHome(),
+                label: 'Login',
               ),
               const SizedBox(height: 24),
               // Forgot Password
@@ -135,12 +79,15 @@ class LoginView extends CubitWidget<LoginCubit, LoginState> {
                   onPressed: () {
                     // Handle forgot password
                   },
-                  child: const Text(
-                    'Forgot Password?',
-                    style: TextStyle(
-                      color: Color(0xFF7E57C2),
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
+                  child: TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      'Forgot Password?',
+                      style: TextStyle(
+                        color: AppColors.primary,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                 ),
@@ -158,9 +105,7 @@ class LoginView extends CubitWidget<LoginCubit, LoginState> {
                     ),
                   ),
                   TextButton(
-                    onPressed: () {
-                      // Handle sign up
-                    },
+                    onPressed: () => context.navigateToSignUp(),
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.zero,
                       minimumSize: Size.zero,
@@ -169,7 +114,7 @@ class LoginView extends CubitWidget<LoginCubit, LoginState> {
                     child: const Text(
                       'Sign Up',
                       style: TextStyle(
-                        color: Color(0xFF7E57C2),
+                        color: AppColors.primary,
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                       ),
