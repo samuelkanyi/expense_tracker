@@ -30,5 +30,44 @@ class AppLocalizationsEn extends AppLocalizations {
       'Setup your budget for each category so you in control';
 
   @override
-  String get login_failed => 'Login Failed';
+  String get login => 'Log in';
+
+  @override
+  String get signup => 'Sign Up';
+
+  @override
+  String get create_account => 'Create your account to get started';
+
+  @override
+  String get fullname => 'Full Name';
+
+  @override
+  String get fullname_hint => 'John Doe';
+
+  @override
+  String get email => 'Email Address';
+
+  @override
+  String get email_hint => 'john@example.com';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get i_agree_terms_1 => 'I agree to the';
+
+  @override
+  String get i_agree_terms_2 => 'Terms';
+
+  @override
+  String get i_agree_terms_3 => ' and ';
+
+  @override
+  String get i_agree_terms_4 => 'Privacy Policy';
+
+  @override
+  String get alternate_signup => 'or sign up with';
+
+  @override
+  String get already_have_account => 'Already have an account?';
 }

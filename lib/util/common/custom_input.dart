@@ -1,59 +1,61 @@
-import 'package:expense_tracker/util/colors.dart';
-import 'package:expense_tracker/util/dimensions.dart';
 import 'package:flutter/material.dart';
 
-class CustomInput extends StatefulWidget {
-  const CustomInput({
-    required this.controller,
-    required this.onChanged,
-    super.key,
-    this.labelText = '',
-    this.hintText = '',
-    this.isPassword = false,
-    this.hasSuffixIcon = false,
-    this.suffixIcon = Icons.visibility,
-    this.error = false,
-  });
-  final String labelText;
+class CustomTextField extends StatelessWidget {
+  final String label;
   final String hintText;
-  final bool isPassword;
-  final bool hasSuffixIcon;
-  final IconData suffixIcon;
-  final TextEditingController controller;
-  final void Function(String) onChanged;
-  final bool error;
+  final IconData icon;
+  final bool obscureText;
+  final TextInputType keyboardType;
 
-  @override
-  State<CustomInput> createState() => _CustomInputState();
-}
+  const CustomTextField({
+    Key? key,
+    required this.label,
+    required this.hintText,
+    required this.icon,
+    this.obscureText = false,
+    this.keyboardType = TextInputType.text,
+  }) : super(key: key);
 
-class _CustomInputState extends State<CustomInput> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: Dimensions.paddingL,
-        vertical: Dimensions.paddingM,
-      ),
-      child: TextField(
-        controller: widget.controller,
-        onChanged: widget.onChanged,
-        obscureText: widget.isPassword,
-        decoration: InputDecoration(
-          labelText: widget.labelText,
-          hintText: widget.hintText,
-          suffixIcon: widget.hasSuffixIcon
-              ? IconButton(
-                  icon: Icon(widget.suffixIcon),
-                  onPressed: () {},
-                )
-              : null,
-          border: const OutlineInputBorder(
-            borderSide: BorderSide(color: AppColors.baseLight100),
-            borderRadius: BorderRadius.all(Dimensions.cornerRadius),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 14,
+            color: Colors.grey[600],
+            fontWeight: FontWeight.w500,
           ),
         ),
-      ),
+        const SizedBox(height: 8),
+        Container(
+          decoration: BoxDecoration(
+            color: Colors.grey[100],
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: TextField(
+            obscureText: obscureText,
+            keyboardType: keyboardType,
+            decoration: InputDecoration(
+              hintText: hintText,
+              hintStyle: TextStyle(
+                color: Colors.grey[400],
+              ),
+              prefixIcon: Icon(
+                icon,
+                color: Colors.grey[400],
+              ),
+              border: InputBorder.none,
+              contentPadding: const EdgeInsets.symmetric(
+                vertical: 16,
+                horizontal: 20,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

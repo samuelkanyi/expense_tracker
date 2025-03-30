@@ -22,6 +22,4 @@ extension DateTimeExtension on DateTime {
   /// this ∈ [from; to)
   bool isBetween(DateTime from, DateTime to) =>
       (isAtSameMomentAs(from) || isAfter(from)) && isBefore(to);
-
-
 }

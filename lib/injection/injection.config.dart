@@ -18,6 +18,7 @@ import '../app/repository/login/login_repository_impl.dart' as _i1043;
 import '../app/repository/sign_up/sign_up_repository.dart' as _i118;
 import '../app/repository/sign_up/sign_up_repository_impl.dart' as _i169;
 import '../login/cubit/cubit/login_cubit.dart' as _i780;
+import '../settings/main/cubit/setting_cubit.dart' as _i601;
 import '../sign_up/cubit/cubit/sign_up_cubit.dart' as _i637;
 import 'injection.dart' as _i464;
 
@@ -33,6 +34,7 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final externalDependenciesModule = _$ExternalDependenciesModule();
+    gh.factory<_i601.SettingCubit>(() => _i601.SettingCubit());
     gh.singleton<_i454.SupabaseClient>(
         () => externalDependenciesModule.supabaseClient);
     gh.factory<_i118.SignUpRepository>(() => _i169.SignUpRepositoryImpl());

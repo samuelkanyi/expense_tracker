@@ -1,16 +1,15 @@
+import 'package:expense_tracker/app/routing/app_navigator.dart';
 import 'package:expense_tracker/app/routing/router_names.dart';
-import 'package:expense_tracker/guide_screens/cubit/login_guide_cubit.dart';
+import 'package:expense_tracker/guide_screens/cubit/app_guide_cubit.dart';
 import 'package:expense_tracker/l10n/l10n.dart';
-import 'package:expense_tracker/util/app_utils.dart';
-import 'package:expense_tracker/util/colors.dart';
 import 'package:expense_tracker/util/common/base_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
-class LoginGuideView extends StatelessWidget {
-  const LoginGuideView({super.key});
+class AppGuideView extends StatelessWidget {
+  const AppGuideView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -67,18 +66,14 @@ class LoginGuideView extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 PrimaryButton(
-                  onPressed: () {
-                    context.go(RouterNames.signUp);
-                  },
-                  label: 'Sign Up',
+                  onPressed: () => context.navigateToSignUp(),
+                  label: S.signup,
                   width: double.infinity,
                 ),
                 const SizedBox(height: 16),
                 SecondaryButton(
-                  onPressed: () {
-                    context.go(RouterNames.login);
-                  },
-                  label: 'Log In',
+                  onPressed: () => context.go(RouterNames.login),
+                  label: S.login,
                   width: double.infinity,
                 ),
               ],
@@ -107,7 +102,7 @@ class LoginGuideView extends StatelessWidget {
         Text(
           description,
           textAlign: TextAlign.center,
-          style: const TextStyle(fontSize: 16, color: AppColors.baseLight20),
+          style: const TextStyle(fontSize: 16, color: Colors.white10),
         ),
       ],
     );

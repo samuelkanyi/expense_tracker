@@ -6,7 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_en.dart';
-import 'app_localizations_es.dart';
+import 'app_localizations_sw.dart';
 
 // ignore_for_file: type=lint
 
@@ -95,7 +95,7 @@ abstract class AppLocalizations {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
-    Locale('es')
+    Locale('sw')
   ];
 
   /// Text shown in login guide screens
@@ -134,11 +134,89 @@ abstract class AppLocalizations {
   /// **'Setup your budget for each category so you in control'**
   String get guide_screen_3_desc;
 
-  /// Text shown when login fails
+  /// No description provided for @login.
   ///
   /// In en, this message translates to:
-  /// **'Login Failed'**
-  String get login_failed;
+  /// **'Log in'**
+  String get login;
+
+  /// No description provided for @signup.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign Up'**
+  String get signup;
+
+  /// No description provided for @create_account.
+  ///
+  /// In en, this message translates to:
+  /// **'Create your account to get started'**
+  String get create_account;
+
+  /// No description provided for @fullname.
+  ///
+  /// In en, this message translates to:
+  /// **'Full Name'**
+  String get fullname;
+
+  /// No description provided for @fullname_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'John Doe'**
+  String get fullname_hint;
+
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email Address'**
+  String get email;
+
+  /// No description provided for @email_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'john@example.com'**
+  String get email_hint;
+
+  /// No description provided for @password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get password;
+
+  /// No description provided for @i_agree_terms_1.
+  ///
+  /// In en, this message translates to:
+  /// **'I agree to the'**
+  String get i_agree_terms_1;
+
+  /// No description provided for @i_agree_terms_2.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms'**
+  String get i_agree_terms_2;
+
+  /// No description provided for @i_agree_terms_3.
+  ///
+  /// In en, this message translates to:
+  /// **' and '**
+  String get i_agree_terms_3;
+
+  /// No description provided for @i_agree_terms_4.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy'**
+  String get i_agree_terms_4;
+
+  /// No description provided for @alternate_signup.
+  ///
+  /// In en, this message translates to:
+  /// **'or sign up with'**
+  String get alternate_signup;
+
+  /// No description provided for @already_have_account.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account?'**
+  String get already_have_account;
 }
 
 class _AppLocalizationsDelegate
@@ -152,7 +230,7 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['en', 'es'].contains(locale.languageCode);
+      <String>['en', 'sw'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -163,8 +241,8 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
   switch (locale.languageCode) {
     case 'en':
       return AppLocalizationsEn();
-    case 'es':
-      return AppLocalizationsEs();
+    case 'sw':
+      return AppLocalizationsSw();
   }
 
   throw FlutterError(

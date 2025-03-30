@@ -24,9 +24,19 @@
     "@guide_screen_3_desc": {
         "description": "Text shown in login guide screens "
     },
-    "login_failed": "Login Failed",
-    "@login_failed": {
-        "description": "Text shown when login fails"
-    }
-
+    "login": "Log in",
+    "signup": "Sign Up",
+    "create_account": "Create your account to get started",
+    "fullname":"Full Name",
+    "fullname_hint":"John Doe",
+    "email": "Email Address",
+    "email_hint":"john@example.com",
+    "password":"Password",
+    "i_agree_terms_1":"I agree to the",
+    "i_agree_terms_2":"Terms",
+    "i_agree_terms_3":" and ",
+    "i_agree_terms_4":"Privacy Policy",
+    "alternate_signup":"or sign up with",
+    "already_have_account":"Already have an account?"
+    
 }

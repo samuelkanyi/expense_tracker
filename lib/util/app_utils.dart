@@ -14,6 +14,7 @@ void logThis(dynamic message) {
     logger.d(message);
   }
 }
+
 enum PasswordCondition {
   capitalLetter,
   smallLetter,

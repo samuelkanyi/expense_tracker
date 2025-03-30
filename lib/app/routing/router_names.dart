@@ -5,5 +5,6 @@ abstract class RouterNames {
   static const String signUp = '/signUp';
   static const String dashboard = '/dashboard';
   static const String settings = '/settings';
+  static const String language_selection = '/settings/language';
   static const String profile = '/profile';
 }

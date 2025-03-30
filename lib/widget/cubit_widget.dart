@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// This widget helps you perform repetitive tasks involving Cubits.
 /// But it has some limitations:
-/// - It is harder to do stateful widget - this is for situations 
+/// - It is harder to do stateful widget - this is for situations
 /// if you want to have cubit and some local state (outside of cubit)
 abstract class CubitWidget<T extends Cubit<S>, S> extends StatefulWidget {
   const CubitWidget({super.key});

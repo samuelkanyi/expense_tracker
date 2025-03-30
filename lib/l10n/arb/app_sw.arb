@@ -1,0 +1,41 @@
+{
+    "@@locale": "sw",
+    "guide_screen_1_title": "Pata udhibiti kamili wa pesa zako",
+    "@guide_screen_1_title": {
+        "description": "Text shown in login guide screens"
+    },
+    "guide_screen_1_desc": "Kuwa msimamizi wako mwenyewe wa pesa na fanya kila senti ihesabike",
+    "@guide_screen_1_desc": {
+        "description": "Text shown in login guide screens"
+    },
+    "guide_screen_2_title": "Jua pesa zako zinakoenda",
+    "@guide_screen_2_title": {
+        "description": "Text shown in login guide screens"
+    },
+    "guide_screen_2_desc": "Fuatilia miamala yako kwa urahisi, ukiwa na vikundi na ripoti za kifedha",
+    "@guide_screen_2_desc": {
+        "description": "Text shown in login guide screens"
+    },
+    "guide_screen_3_title": "Kupanga mapema",
+    "@guide_screen_3_title": {
+        "description": "Text shown in login guide screens"
+    },
+    "guide_screen_3_desc": "Weka bajeti yako kwa kila kikundi ili uwe na udhibiti",
+    "@guide_screen_3_desc": {
+        "description": "Text shown in login guide screens "
+    },
+    "login": "Ingia",
+    "signup": "Jisajili",
+    "create_account": "Unda akaunti yako ili kuanza",
+    "fullname": "Jina Kamili",
+    "fullname_hint": "John Doe",
+    "email": "Anwani ya Barua Pepe",
+    "email_hint": "john@example.com",
+    "password": "Nenosiri",
+    "i_agree_terms_1": "Ninakubali",
+    "i_agree_terms_2": "Masharti",
+    "i_agree_terms_3": " na ",
+    "i_agree_terms_4": "Sera ya Faragha",
+    "alternate_signup": "au jisajili kwa",
+    "already_have_account": "Tayari una akaunti?"
+}

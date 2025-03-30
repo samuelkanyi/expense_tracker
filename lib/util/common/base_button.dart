@@ -24,43 +24,25 @@ class BaseButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: width,
-      height: height,
-      child: withIcon
-          ? ElevatedButton.icon(
-              onPressed: onPressed,
-              label: Text(label),
-              icon: const Icon(Icons.add),
-              style: ButtonStyle(
-                shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                backgroundColor: WidgetStateProperty.all(backgroundColor),
-                foregroundColor: WidgetStateProperty.all(textColor),
-              ),
-            )
-          : TextButton(
-              onPressed: onPressed,
-              style: ButtonStyle(
-                shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                backgroundColor: WidgetStateProperty.all(backgroundColor),
-                foregroundColor: WidgetStateProperty.all(textColor),
-              ),
-              child: Text(
-                label,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        foregroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        elevation: 0,
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        minimumSize: const Size(double.infinity, 56),
+      ),
+      child: Text(
+        label,
+        style: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
     );
   }
 }
@@ -75,8 +57,8 @@ class PrimaryButton extends BaseButton {
     super.icon,
     super.label = '',
   }) : super(
-          backgroundColor: AppColors.violet100,
-          textColor: AppColors.light100,
+          backgroundColor: AppColors.primary,
+          textColor: Colors.white,
           withIcon: hasIcon,
         );
 }
@@ -91,8 +73,8 @@ class SecondaryButton extends BaseButton {
     bool hasIcon = false,
     super.label = '',
   }) : super(
-          backgroundColor: AppColors.violet20,
-          textColor: AppColors.violet100,
+          backgroundColor: AppColors.tertiary,
+          textColor: AppColors.primary,
           withIcon: hasIcon,
         );
 }
