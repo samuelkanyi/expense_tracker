@@ -16,6 +16,7 @@ import 'package:supabase_flutter/supabase_flutter.dart' as _i454;
 import '../app/repository/sign_up_repository.dart' as _i448;
 import '../app/repository/sign_up_repository_impl.dart' as _i555;
 import '../login/cubit/cubit/login_cubit.dart' as _i780;
+import '../settings/cubit/setting_cubit.dart' as _i882;
 import '../sign_up/cubit/cubit/sign_up_cubit.dart' as _i637;
 import 'injection.dart' as _i464;
 
@@ -32,6 +33,7 @@ extension GetItInjectableX on _i174.GetIt {
     );
     final externalDependenciesModule = _$ExternalDependenciesModule();
     gh.factory<_i780.LoginCubit>(() => _i780.LoginCubit());
+    gh.factory<_i882.SettingCubit>(() => _i882.SettingCubit());
     gh.singleton<_i454.SupabaseClient>(
         () => externalDependenciesModule.supabaseClient);
     gh.factory<_i448.SignUpRepository>(() => _i555.SignUpRepositoryImpl());

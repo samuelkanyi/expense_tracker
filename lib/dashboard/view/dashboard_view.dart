@@ -1,8 +1,10 @@
 import 'package:expense_tracker/app/dummy_data/data.dart';
+import 'package:expense_tracker/app/routing/router_names.dart';
 import 'package:expense_tracker/util/common/bottom_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 class ExpenseDashboard extends StatefulWidget {
@@ -82,20 +84,23 @@ class _ExpenseDashboardState extends State<ExpenseDashboard> {
             ),
           ],
         ),
-        Container(
-          width: 50,
-          height: 50,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: Colors.grey[200],
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(15),
-            child: Center(
-              child: Icon(
-                Icons.person,
-                color: Theme.of(context).colorScheme.primary,
-                size: 30,
+        GestureDetector(
+          onTap: () => context.go(RouterNames.settings),
+          child: Container(
+            width: 50,
+            height: 50,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: Colors.grey[200],
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(15),
+              child: Center(
+                child: Icon(
+                  Icons.person,
+                  color: Theme.of(context).colorScheme.primary,
+                  size: 30,
+                ),
               ),
             ),
           ),

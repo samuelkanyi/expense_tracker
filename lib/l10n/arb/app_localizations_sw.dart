@@ -6,7 +6,7 @@ import 'app_localizations.dart';
 
 /// The translations for Spanish Castilian (`es`).
 class AppLocalizationsEs extends AppLocalizations {
-  AppLocalizationsEs([String locale = 'es']) : super(locale);
+  AppLocalizationsEs([String locale = 'sw']) : super(locale);
 
   @override
   String get guide_screen_1_title => 'Gain total control of your money';

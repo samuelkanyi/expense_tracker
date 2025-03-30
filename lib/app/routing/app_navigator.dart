@@ -3,6 +3,7 @@ import 'package:expense_tracker/app/routing/router_names.dart';
 import 'package:expense_tracker/dashboard/view/dashboard_view.dart';
 import 'package:expense_tracker/guide_screens/view/login_guide_page.dart';
 import 'package:expense_tracker/login/view/login_view.dart';
+import 'package:expense_tracker/settings/view/setting_view.dart';
 import 'package:expense_tracker/sign_up/view/sign_up_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -35,6 +36,13 @@ final router = GoRouter(
       pageBuilder: (context, state) => MaterialPage(
         key: state.pageKey,
         child: const ExpenseDashboard(),
+      ),
+    ),
+    GoRoute(
+      path: RouterNames.settings,
+      pageBuilder: (context, state) => MaterialPage(
+        key: state.pageKey,
+        child: const SettingsView(),
       ),
     ),
   ],
