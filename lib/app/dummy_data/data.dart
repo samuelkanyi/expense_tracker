@@ -73,5 +73,21 @@ final List<Map<String, dynamic>> spendingByCategory = [
   },
 ];
 
+// Example categories and wallets
+final List<String> categories = [
+  'Food',
+  'Transport',
+  'Entertainment',
+  'Shopping',
+  'Utilities'
+];
+final List<String> wallets = [
+  'Mpesa',
+  'Cash',
+  'Credit Card',
+  'Debit Card',
+  'Savings'
+];
+
 // Monthly spending data
 final List<double> monthlyData = [1250, 1420, 1350, 1250, 1600, 1780];

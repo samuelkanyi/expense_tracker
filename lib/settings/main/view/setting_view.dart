@@ -1,5 +1,6 @@
 import 'package:expense_tracker/app/routing/app_navigator.dart';
 import 'package:expense_tracker/app/routing/router_names.dart';
+import 'package:expense_tracker/settings/language_setting/language_selection_page.dart';
 import 'package:expense_tracker/settings/main/cubit/setting_cubit.dart';
 import 'package:expense_tracker/util/common/base_button.dart';
 import 'package:expense_tracker/widget/cubit_widget.dart';
@@ -7,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class SettingsView extends CubitWidget<SettingCubit, SettingState> {
-  const SettingsView({Key? key}) : super(key: key);
+  const SettingsView({super.key});
 
   @override
   Widget build(BuildContext context, SettingCubit cubit, SettingState state) {
@@ -56,7 +57,7 @@ class SettingsView extends CubitWidget<SettingCubit, SettingState> {
                     const SizedBox(width: 16),
                     const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
                           'Alex',
                           style: TextStyle(
@@ -64,7 +65,7 @@ class SettingsView extends CubitWidget<SettingCubit, SettingState> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const SizedBox(height: 4),
+                        SizedBox(height: 4),
                         Text(
                           'alex@example.com',
                           style: TextStyle(
@@ -109,7 +110,19 @@ class SettingsView extends CubitWidget<SettingCubit, SettingState> {
                   icon: Icons.language_outlined,
                   title: 'Language',
                   subtitle: 'English (US)',
-                  onTap: () => context.go(RouterNames.language_selection),
+                  onTap: () async {
+                    final _selectedLanguage = await Navigator.push(
+                      context,
+                      MaterialPageRoute<String>(
+                        builder: (context) => const LanguageSelectionPage(),
+                      ),
+                    );
+
+                    if (_selectedLanguage != null) {
+                      //TODOset state to new language. will ahve to change
+                      //from cubitWidget to stateful widget
+                    }
+                  },
                 ),
                 const SizedBox(height: 30),
                 // App Settings
@@ -159,9 +172,9 @@ class SettingsView extends CubitWidget<SettingCubit, SettingState> {
                 ),
                 // Logout button
                 PrimaryButton(
-                  onPressed: () => context.go(RouterNames.home),
+                  onPressed: () => context.push(RouterNames.home),
                   label: 'Logout',
-                )
+                ),
               ],
             ),
           ),

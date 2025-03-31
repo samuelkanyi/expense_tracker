@@ -1,5 +1,6 @@
 import 'package:expense_tracker/app/routing/app_navigator.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class LanguageSelectionPage extends StatefulWidget {
   const LanguageSelectionPage({Key? key}) : super(key: key);
@@ -40,7 +41,7 @@ class _LanguageSelectionPageState extends State<LanguageSelectionPage> {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => context.back(),
+          onPressed: () => context.pop(_selectedLanguage),
         ),
         title: const Text(
           'Language',
@@ -130,9 +131,9 @@ class _LanguageSelectionPageState extends State<LanguageSelectionPage> {
             if (isSelected)
               Container(
                 padding: const EdgeInsets.all(2),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
-                  color: const Color(0xFF7B6AF0),
+                  color: Color(0xFF7B6AF0),
                 ),
                 child: const Icon(
                   Icons.check,

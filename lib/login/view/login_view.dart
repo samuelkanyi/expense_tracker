@@ -1,44 +1,51 @@
 import 'package:expense_tracker/app/routing/app_navigator.dart';
-import 'package:expense_tracker/login/cubit/cubit/login_cubit.dart';
+import 'package:expense_tracker/l10n/l10n.dart';
 import 'package:expense_tracker/util/colors.dart';
 import 'package:expense_tracker/util/common/base_button.dart';
 import 'package:expense_tracker/util/common/custom_input.dart';
-import 'package:expense_tracker/widget/cubit_widget.dart';
 import 'package:flutter/material.dart';
 
-class LoginView extends CubitWidget<LoginCubit, LoginState> {
+class LoginView extends StatefulWidget {
   const LoginView({super.key});
 
   @override
-  Widget build(BuildContext context, LoginCubit cubit, LoginState state) {
+  State<LoginView> createState() => _LoginViewState();
+}
+
+class _LoginViewState extends State<LoginView> {
+  bool isLoading = false;
+  Function onPressed = () {};
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {
-            // Handle back button press
-          },
-        ),
-        title: const Text(
-          'Login',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 18,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        centerTitle: true,
-      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 32),
+              const Spacer(),
+              ShaderMask(
+                shaderCallback: (bounds) {
+                  return LinearGradient(
+                    colors: [
+                      Theme.of(context).colorScheme.primary,
+                      Theme.of(context).colorScheme.secondary,
+                    ],
+                  ).createShader(bounds);
+                },
+                child: Text(
+                  context.l10n.login,
+                  style: const TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+
               // Email Field
               const CustomTextField(
                 label: 'Email',
@@ -54,12 +61,14 @@ class LoginView extends CubitWidget<LoginCubit, LoginState> {
                 icon: Icons.lock_outline,
                 obscureText: true,
               ),
-
-              const SizedBox(height: 24),
+              const SizedBox(
+                height: 16,
+              ),
               // Login Button
               PrimaryButton(
                 onPressed: () => context.navigateToHome(),
                 label: 'Login',
+                isLoading: isLoading,
               ),
               const SizedBox(height: 24),
               // Forgot Password
@@ -111,18 +120,7 @@ class LoginView extends CubitWidget<LoginCubit, LoginState> {
                   ),
                 ],
               ),
-              // Bottom spacer (home indicator area)
               const Spacer(),
-              Container(
-                height: 5,
-                width: 134,
-                margin: const EdgeInsets.only(bottom: 8),
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(2.5),
-                ),
-                alignment: Alignment.center,
-              ),
             ],
           ),
         ),

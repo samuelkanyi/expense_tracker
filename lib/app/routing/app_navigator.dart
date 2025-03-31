@@ -1,3 +1,4 @@
+import 'package:expense_tracker/app/expense/view/add_expense_view.dart';
 import 'package:expense_tracker/app/helpers/navigation_observer.dart';
 import 'package:expense_tracker/app/routing/router_names.dart';
 import 'package:expense_tracker/dashboard/view/dashboard_view.dart';
@@ -47,10 +48,17 @@ final router = GoRouter(
       ),
     ),
     GoRoute(
-      path: RouterNames.language_selection,
+      path: RouterNames.languageSelection,
       pageBuilder: (context, state) => MaterialPage(
         key: state.pageKey,
         child: const LanguageSelectionPage(),
+      ),
+    ),
+    GoRoute(
+      path: RouterNames.addExpense,
+      pageBuilder: (context, state) => MaterialPage(
+        key: state.pageKey,
+        child: const AddExpenseView(),
       ),
     ),
   ],
@@ -59,7 +67,7 @@ final router = GoRouter(
 
 extension NavigationExtension on BuildContext {
   void back() => GoRouter.of(this).pop();
-  void navigateToHome() => GoRouter.of(this).go(RouterNames.dashboard);
-  void navigateToSignUp() => GoRouter.of(this).go(RouterNames.signUp);
-  void goToLogin() => GoRouter.of(this).go(RouterNames.login);
+  void navigateToHome() => GoRouter.of(this).push(RouterNames.dashboard);
+  void navigateToSignUp() => GoRouter.of(this).push(RouterNames.signUp);
+  void goToLogin() => GoRouter.of(this).push(RouterNames.login);
 }

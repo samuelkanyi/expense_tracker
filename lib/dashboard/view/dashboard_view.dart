@@ -51,7 +51,7 @@ class _ExpenseDashboardState extends State<ExpenseDashboard> {
       ),
       bottomNavigationBar: const BottomNavigation(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () => context.push(RouterNames.addExpense),
         backgroundColor: Theme.of(context).colorScheme.primary,
         elevation: 2,
         child: const Icon(Icons.add, color: Colors.white),
@@ -85,7 +85,7 @@ class _ExpenseDashboardState extends State<ExpenseDashboard> {
           ],
         ),
         GestureDetector(
-          onTap: () => context.go(RouterNames.settings),
+          onTap: () => context.push(RouterNames.settings),
           child: Container(
             width: 50,
             height: 50,

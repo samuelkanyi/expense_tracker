@@ -66,7 +66,7 @@ class AppGuideView extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 PrimaryButton(
-                  onPressed: () => context.navigateToSignUp(),
+                  onPressed: () => context.go(RouterNames.signUp),
                   label: S.signup,
                   width: double.infinity,
                 ),
