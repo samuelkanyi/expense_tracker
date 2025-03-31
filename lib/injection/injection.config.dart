@@ -12,6 +12,7 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:supabase_flutter/supabase_flutter.dart' as _i454;
 
+import '../app/domain/dashboard/cubit/cubit/dashboard_cubit.dart' as _i759;
 import '../app/domain/expense/cubit/expense_cubit.dart' as _i221;
 import '../app/domain/income/cubit/income_cubit.dart' as _i305;
 import '../app/domain/login/cubit/cubit/login_cubit.dart' as _i635;
@@ -47,6 +48,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i701.ExpenseRepository());
     gh.factory<_i221.ExpenseCubit>(() =>
         _i221.ExpenseCubit(gh<_i758.BaseHiveRepository<_i453.ExpenseModel>>()));
+    gh.factory<_i759.DashboardCubit>(() => _i759.DashboardCubit(
+        gh<_i758.BaseHiveRepository<_i453.ExpenseModel>>()));
     gh.factory<_i330.SignUpCubit>(
         () => _i330.SignUpCubit(gh<_i118.SignUpRepository>()));
     gh.factory<_i494.LoginRepository>(

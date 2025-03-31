@@ -1,3 +1,4 @@
+import 'package:expense_tracker/app/domain/dashboard/cubit/cubit/dashboard_cubit.dart';
 import 'package:expense_tracker/app/domain/expense/cubit/expense_cubit.dart';
 import 'package:expense_tracker/app/domain/expense/cubit/expense_state.dart';
 import 'package:expense_tracker/app/domain/income/cubit/income_cubit.dart';
@@ -6,8 +7,8 @@ import 'package:expense_tracker/app/routing/router_names.dart';
 import 'package:expense_tracker/util/common/bottom_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
@@ -23,35 +24,44 @@ class _ExpenseDashboardState extends State<ExpenseDashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Header with user greeting and profile
-                _buildHeader(),
-                const SizedBox(height: 24),
+      body: BlocBuilder<DashboardCubit, DashboardState>(
+        builder: (context, state) {
+          if (state is Loading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return SafeArea(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Header with user greeting and profile
+                    _buildHeader(),
+                    const SizedBox(height: 24),
 
-                // Card with account balance and summary
-                _buildBalanceCard(),
-                const SizedBox(height: 24),
+                    // Card with account balance and summary
+                    _buildBalanceCard(state),
+                    const SizedBox(height: 24),
 
-                // Monthly spending chart
-                _buildMonthlyChart(),
-                const SizedBox(height: 30),
+                    // Monthly spending chart
+                    _buildMonthlyChart(),
+                    const SizedBox(height: 30),
 
-                // Category spending section
-                _buildCategorySection(),
-                const SizedBox(height: 30),
+                    // Category spending section
+                    _buildCategorySection(state),
+                    const SizedBox(height: 30),
 
-                // Recent transactions
-                _buildRecentTransactions(),
-              ],
+                    // Recent transactions
+                    _buildRecentTransactions(state),
+                  ],
+                ),
+              ),
             ),
-          ),
-        ),
+          );
+        },
       ),
       bottomNavigationBar: const BottomNavigation(),
       floatingActionButton: FloatingActionButton(
@@ -72,7 +82,7 @@ class _ExpenseDashboardState extends State<ExpenseDashboard> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Hello, Alex',
+              'Hello, Amshel',
               style: TextStyle(
                 fontSize: 14,
                 color: Colors.grey[600],
@@ -113,92 +123,69 @@ class _ExpenseDashboardState extends State<ExpenseDashboard> {
     );
   }
 
-  Widget _buildBalanceCard() {
-    return BlocBuilder<IncomeCubit, IncomeState>(
-      builder: (context, state) {
-        final income = state.total;
-        return BlocBuilder<ExpenseCubit, ExpenseState>(
-          builder: (context, state) {
-            return FutureBuilder(
-              future: context.read<ExpenseCubit>().getTotal(),
-              builder: (context, asyncSnapshot) {
-                if (asyncSnapshot.hasData) {
-                  final expenses = asyncSnapshot.data!;
-                  final balance = income - expenses;
-                  return Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          Theme.of(context).colorScheme.primary,
-                          Theme.of(context).colorScheme.tertiary,
-                        ],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                      ),
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Theme.of(context)
-                              .colorScheme
-                              .primary
-                              .withOpacity(0.3),
-                          blurRadius: 15,
-                          offset: const Offset(0, 5),
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Total Balance',
-                          style: TextStyle(
-                            color: Colors.white70,
-                            fontSize: 14,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          'ksh $balance',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 24),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            _buildBalanceItem(
-                              icon: Icons.arrow_upward,
-                              title: 'Income',
-                              amount: 'ksh $income',
-                              positive: true,
-                            ),
-                            _buildBalanceItem(
-                              icon: Icons.arrow_downward,
-                              title: 'Expenses',
-                              amount: 'ksh $expenses',
-                              positive: false,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  );
-                } else if (asyncSnapshot.hasError) {
-                  return Text(asyncSnapshot.error.toString());
-                } else {
-                  return CircularProgressIndicator();
-                }
-              },
-            );
-          },
-        );
-      },
+  Widget _buildBalanceCard(DashboardState state) {
+    final data = state as Loaded;
+    final balance = data.income - data.expenses;
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Theme.of(context).colorScheme.primary,
+            Theme.of(context).colorScheme.tertiary,
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
+            blurRadius: 15,
+            offset: const Offset(0, 5),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Total Balance',
+            style: TextStyle(
+              color: Colors.white70,
+              fontSize: 14,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'ksh $balance',
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 24),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _buildBalanceItem(
+                icon: Icons.arrow_upward,
+                title: 'Income',
+                amount: 'ksh ${data.income}',
+                positive: true,
+              ),
+              _buildBalanceItem(
+                icon: Icons.arrow_downward,
+                title: 'Expenses',
+                amount: 'ksh ${data.expenses}',
+                positive: false,
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -334,7 +321,8 @@ class _ExpenseDashboardState extends State<ExpenseDashboard> {
     );
   }
 
-  Widget _buildCategorySection() {
+  Widget _buildCategorySection(DashboardState state) {
+    final data = state as Loaded;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -355,9 +343,9 @@ class _ExpenseDashboardState extends State<ExpenseDashboard> {
             crossAxisSpacing: 16,
             mainAxisSpacing: 16,
           ),
-          itemCount: spendingByCategory.length,
+          itemCount: data.categoryTotals.length,
           itemBuilder: (context, index) {
-            final Map<String, dynamic> category = spendingByCategory[index];
+            final Map<String, dynamic> category = data.categoryTotals[index];
             return Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
@@ -380,18 +368,19 @@ class _ExpenseDashboardState extends State<ExpenseDashboard> {
                         width: 36,
                         height: 36,
                         decoration: BoxDecoration(
-                          color: (category['color'] as Color).withOpacity(0.2),
+                          color: _getCategoryColor(category['name'].toString())
+                              .withOpacity(0.2),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Icon(
-                          category['icon'] as IconData,
+                          _getCategoryIcon(category['name'].toString()),
                           size: 16,
-                          color: category['color'] as Color,
+                          color: _getCategoryColor(category['name'].toString()),
                         ),
                       ),
                       const Spacer(),
                       Text(
-                        '\$${category['amount']}',
+                        'ksh ${category['amount']}',
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
@@ -400,7 +389,7 @@ class _ExpenseDashboardState extends State<ExpenseDashboard> {
                   ),
                   const Spacer(),
                   Text(
-                    category['category'].toString(),
+                    category['name'].toString(),
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
@@ -415,7 +404,8 @@ class _ExpenseDashboardState extends State<ExpenseDashboard> {
     );
   }
 
-  Widget _buildRecentTransactions() {
+  Widget _buildRecentTransactions(DashboardState state) {
+    final data = state as Loaded;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -444,10 +434,10 @@ class _ExpenseDashboardState extends State<ExpenseDashboard> {
         ListView.separated(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          itemCount: recentTransactions.length,
+          itemCount: data.transactions.length,
           separatorBuilder: (context, index) => const Divider(height: 24),
           itemBuilder: (context, index) {
-            final transaction = recentTransactions[index];
+            final transaction = data.transactions[index];
             return Row(
               children: [
                 // Category icon
@@ -455,12 +445,13 @@ class _ExpenseDashboardState extends State<ExpenseDashboard> {
                   width: 50,
                   height: 50,
                   decoration: BoxDecoration(
-                    color: (transaction['color'] as Color).withOpacity(0.2),
+                    color: _getCategoryColor(transaction.category)
+                        .withOpacity(0.2),
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: Icon(
-                    transaction['icon'] as IconData,
-                    color: transaction['color'] as Color,
+                    _getCategoryIcon(transaction.category),
+                    color: _getCategoryColor(transaction.category),
                     size: 20,
                   ),
                 ),
@@ -471,7 +462,7 @@ class _ExpenseDashboardState extends State<ExpenseDashboard> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        transaction['title'].toString(),
+                        transaction.description,
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
@@ -479,7 +470,7 @@ class _ExpenseDashboardState extends State<ExpenseDashboard> {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        '${transaction['category']} • ${DateFormat.MMMd().format(transaction['date'] as DateTime)}',
+                        '${transaction.category} • ${DateFormat.MMMd().format(transaction.createdAt as DateTime)}',
                         style: TextStyle(
                           fontSize: 13,
                           color: Colors.grey[600],
@@ -490,7 +481,7 @@ class _ExpenseDashboardState extends State<ExpenseDashboard> {
                 ),
                 // Amount
                 Text(
-                  '-\$${transaction['amount'].toStringAsFixed(2)}',
+                  '- ksh${transaction.amount.toStringAsFixed(2)}',
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -503,4 +494,24 @@ class _ExpenseDashboardState extends State<ExpenseDashboard> {
       ],
     );
   }
+}
+
+Color _getCategoryColor(String category) {
+  return switch (category) {
+    'Food' => const Color(0xFF6C63FF),
+    'Transport' => const Color(0xFF4ECDC4),
+    'Entertainment' => const Color(0xFFFF6584),
+    'Utilities' => const Color(0xFFFFAA33),
+    _ => const Color(0xFF4ECDC4)
+  };
+}
+
+IconData _getCategoryIcon(String category) {
+  return switch (category) {
+    'Food' => FontAwesomeIcons.utensils,
+    'Transport' => FontAwesomeIcons.bus,
+    'Entertainment' => FontAwesomeIcons.film,
+    'Utilities' => FontAwesomeIcons.bolt,
+    _ => FontAwesomeIcons.atom
+  };
 }

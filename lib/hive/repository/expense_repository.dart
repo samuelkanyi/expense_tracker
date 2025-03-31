@@ -16,6 +16,7 @@ class ExpenseRepository extends BaseHiveRepository<ExpenseModel> {
   @override
   Future<List<ExpenseModel>> getAll() async {
     final box = await Hive.openBox<ExpenseModel>(boxName);
+
     return box.values.toList();
   }
 
@@ -45,6 +46,9 @@ class ExpenseRepository extends BaseHiveRepository<ExpenseModel> {
     final box = await Hive.openBox<ExpenseModel>(boxName);
     List<ExpenseModel> models = box.values.toList();
 
+    if (models.isEmpty) {
+      return 0;
+    }
     double total =
         models.map((model) => model.amount).reduce((prev, next) => prev + next);
 
