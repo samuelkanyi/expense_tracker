@@ -1,7 +1,7 @@
 import 'package:expense_tracker/app/routing/app_navigator.dart';
 import 'package:expense_tracker/l10n/l10n.dart';
-import 'package:expense_tracker/sign_up/cubit/cubit/sign_up_cubit.dart';
-import 'package:expense_tracker/sign_up/cubit/cubit/sign_up_state.dart';
+import 'package:expense_tracker/app/domain/sign_up/cubit/cubit/sign_up_cubit.dart';
+import 'package:expense_tracker/app/domain/sign_up/cubit/cubit/sign_up_state.dart';
 import 'package:expense_tracker/util/common/base_button.dart';
 import 'package:expense_tracker/util/common/custom_input.dart';
 import 'package:expense_tracker/util/common/social_icons.dart';

@@ -1,5 +1,5 @@
-import 'package:expense_tracker/guide_screens/cubit/app_guide_cubit.dart';
-import 'package:expense_tracker/guide_screens/view/app_guide_view.dart';
+import 'package:expense_tracker/app/domain/guide_screens/cubit/app_guide_cubit.dart';
+import 'package:expense_tracker/app/domain/guide_screens/view/app_guide_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

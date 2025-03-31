@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:expense_tracker/app/repository/login/login_repository.dart';
-import 'package:expense_tracker/login/cubit/cubit/login_state.dart';
+import 'package:expense_tracker/app/domain/login/cubit/cubit/login_state.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 

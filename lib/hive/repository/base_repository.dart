@@ -1,6 +1,6 @@
 abstract class BaseHiveRepository<T> {
-  late String boxName;
   BaseHiveRepository({required this.boxName});
+  late String boxName;
 
   Future<void> add(T model);
 
@@ -9,4 +9,8 @@ abstract class BaseHiveRepository<T> {
   Future<void> delete(String id);
 
   Future<void> update(String id, T model);
+
+  Future<void> deleteAll();
+
+  Future<double> totalExpenses();
 }

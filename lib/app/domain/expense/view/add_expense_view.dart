@@ -1,5 +1,8 @@
+import 'dart:ffi';
+
 import 'package:expense_tracker/app/dummy_data/data.dart';
-import 'package:expense_tracker/app/expense/cubit/expense_cubit.dart';
+import 'package:expense_tracker/app/domain/expense/cubit/expense_cubit.dart';
+import 'package:expense_tracker/app/domain/expense/cubit/expense_state.dart';
 import 'package:expense_tracker/app/routing/app_navigator.dart';
 import 'package:expense_tracker/util/colors.dart';
 import 'package:expense_tracker/util/common/base_button.dart';
@@ -7,7 +10,14 @@ import 'package:expense_tracker/widget/cubit_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class AddExpenseView extends CubitWidgetState<ExpenseCubit, ExpenseState> {
+class AddExpenseView extends CubitWidget<ExpenseCubit, ExpenseState> {
+  @override
+  void initState(BuildContext context, ExpenseCubit cubit) async {
+    // TODO: implement initState
+    super.initState(context, cubit);
+    // await cubit.deleteAll();
+  }
+
   @override
   Widget build(BuildContext context, ExpenseCubit cubit, ExpenseState state) {
     return Scaffold(
@@ -34,7 +44,7 @@ class AddExpenseView extends CubitWidgetState<ExpenseCubit, ExpenseState> {
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 30),
             color: AppColors.primary,
             width: double.infinity,
-            child: const Column(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
@@ -60,6 +70,7 @@ class AddExpenseView extends CubitWidgetState<ExpenseCubit, ExpenseState> {
                     const SizedBox(width: 8),
                     Expanded(
                       child: TextField(
+                        onChanged: (value) => cubit.onAmountChanged(value),
                         keyboardType:
                             TextInputType.numberWithOptions(decimal: true),
                         style: const TextStyle(
@@ -101,7 +112,9 @@ class AddExpenseView extends CubitWidgetState<ExpenseCubit, ExpenseState> {
                     ),
                     child: DropdownButtonHideUnderline(
                       child: DropdownButton<String>(
-                        value: categories.first,
+                        value: state.category!.isEmpty
+                            ? categories.first
+                            : state.category,
                         isExpanded: true,
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         icon: const Icon(Icons.keyboard_arrow_down),
@@ -120,7 +133,8 @@ class AddExpenseView extends CubitWidgetState<ExpenseCubit, ExpenseState> {
                             ),
                           );
                         }).toList(),
-                        onChanged: (String? newValue) {},
+                        onChanged: (String? newValue) =>
+                            cubit.categoryChanged(newValue!),
                       ),
                     ),
                   ),
@@ -133,6 +147,7 @@ class AddExpenseView extends CubitWidgetState<ExpenseCubit, ExpenseState> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: TextField(
+                      onChanged: (value) => cubit.descriptionChanged(value),
                       decoration: const InputDecoration(
                         hintText: 'Description',
                         hintStyle: TextStyle(color: Colors.grey),
@@ -152,7 +167,9 @@ class AddExpenseView extends CubitWidgetState<ExpenseCubit, ExpenseState> {
                     ),
                     child: DropdownButtonHideUnderline(
                       child: DropdownButton<String>(
-                        value: wallets.first,
+                        value: state.paymentMethod!.isEmpty
+                            ? wallets.first
+                            : state.paymentMethod,
                         isExpanded: true,
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         icon: const Icon(Icons.keyboard_arrow_down),
@@ -168,7 +185,8 @@ class AddExpenseView extends CubitWidgetState<ExpenseCubit, ExpenseState> {
                             ),
                           );
                         }).toList(),
-                        onChanged: (String? newValue) {},
+                        onChanged: (String? newValue) =>
+                            cubit.paymentMethodChanged(newValue!),
                       ),
                     ),
                   ),
@@ -204,7 +222,7 @@ class AddExpenseView extends CubitWidgetState<ExpenseCubit, ExpenseState> {
                   const SizedBox(height: 24),
 
                   // Repeat transaction switch
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Column(
@@ -226,12 +244,7 @@ class AddExpenseView extends CubitWidgetState<ExpenseCubit, ExpenseState> {
                             ),
                           ),
                         ],
-                      ),
-                      Switch(
-                        value: false,
-                        onChanged: (value) {},
-                        activeColor: Colors.teal,
-                      ),
+                      )
                     ],
                   ),
 
@@ -239,7 +252,8 @@ class AddExpenseView extends CubitWidgetState<ExpenseCubit, ExpenseState> {
 
                   // Save button
                   PrimaryButton(
-                    onPressed: () {},
+                    onPressed: () async => cubit.addExpense(),
+                    isLoading: state.step == ExpenseFormStateStep.progress,
                     label: 'Save',
                   ),
                 ],

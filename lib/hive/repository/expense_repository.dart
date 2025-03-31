@@ -3,7 +3,7 @@ import 'package:expense_tracker/hive/repository/base_repository.dart';
 import 'package:hive_ce/hive.dart';
 import 'package:injectable/injectable.dart';
 
-@Injectable(as: BaseHiveRepository)
+@Injectable(as: BaseHiveRepository<ExpenseModel>)
 class ExpenseRepository extends BaseHiveRepository<ExpenseModel> {
   ExpenseRepository() : super(boxName: 'expense');
 
@@ -29,5 +29,25 @@ class ExpenseRepository extends BaseHiveRepository<ExpenseModel> {
   Future<void> update(String id, ExpenseModel model) async {
     final box = await Hive.openBox<ExpenseModel>(boxName);
     await box.put(model.id, model);
+  }
+
+  @override
+  Future<void> deleteAll() async {
+    final box = await Hive.openBox<ExpenseModel>(boxName);
+    int boxLength = box.values.length;
+    for (int i = 0; i <= boxLength; i++) {
+      await box.deleteAt(i);
+    }
+  }
+
+  @override
+  Future<double> totalExpenses() async {
+    final box = await Hive.openBox<ExpenseModel>(boxName);
+    List<ExpenseModel> models = box.values.toList();
+
+    double total =
+        models.map((model) => model.amount).reduce((prev, next) => prev + next);
+
+    return total;
   }
 }

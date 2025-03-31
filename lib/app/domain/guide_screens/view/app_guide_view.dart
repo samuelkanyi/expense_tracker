@@ -1,6 +1,6 @@
 import 'package:expense_tracker/app/routing/app_navigator.dart';
 import 'package:expense_tracker/app/routing/router_names.dart';
-import 'package:expense_tracker/guide_screens/cubit/app_guide_cubit.dart';
+import 'package:expense_tracker/app/domain/guide_screens/cubit/app_guide_cubit.dart';
 import 'package:expense_tracker/l10n/l10n.dart';
 import 'package:expense_tracker/util/common/base_button.dart';
 import 'package:flutter/material.dart';

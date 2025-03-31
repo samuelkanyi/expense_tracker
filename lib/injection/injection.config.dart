@@ -12,7 +12,11 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:supabase_flutter/supabase_flutter.dart' as _i454;
 
-import '../app/expense/cubit/expense_cubit.dart' as _i45;
+import '../app/domain/expense/cubit/expense_cubit.dart' as _i221;
+import '../app/domain/income/cubit/income_cubit.dart' as _i305;
+import '../app/domain/login/cubit/cubit/login_cubit.dart' as _i635;
+import '../app/domain/settings/main/cubit/setting_cubit.dart' as _i725;
+import '../app/domain/sign_up/cubit/cubit/sign_up_cubit.dart' as _i330;
 import '../app/models/expense/expense_model.dart' as _i453;
 import '../app/repository/login/login_repository.dart' as _i494;
 import '../app/repository/login/login_repository_impl.dart' as _i1043;
@@ -20,9 +24,6 @@ import '../app/repository/sign_up/sign_up_repository.dart' as _i118;
 import '../app/repository/sign_up/sign_up_repository_impl.dart' as _i169;
 import '../hive/repository/base_repository.dart' as _i758;
 import '../hive/repository/expense_repository.dart' as _i701;
-import '../login/cubit/cubit/login_cubit.dart' as _i780;
-import '../settings/main/cubit/setting_cubit.dart' as _i601;
-import '../sign_up/cubit/cubit/sign_up_cubit.dart' as _i637;
 import 'injection.dart' as _i464;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -37,19 +38,21 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final externalDependenciesModule = _$ExternalDependenciesModule();
-    gh.factory<_i601.SettingCubit>(() => _i601.SettingCubit());
-    gh.factory<_i45.ExpenseCubit>(() => _i45.ExpenseCubit());
+    gh.factory<_i725.SettingCubit>(() => _i725.SettingCubit());
+    gh.factory<_i305.IncomeCubit>(() => _i305.IncomeCubit());
     gh.singleton<_i454.SupabaseClient>(
         () => externalDependenciesModule.supabaseClient);
     gh.factory<_i118.SignUpRepository>(() => _i169.SignUpRepositoryImpl());
     gh.factory<_i758.BaseHiveRepository<_i453.ExpenseModel>>(
         () => _i701.ExpenseRepository());
-    gh.factory<_i637.SignUpCubit>(
-        () => _i637.SignUpCubit(gh<_i118.SignUpRepository>()));
+    gh.factory<_i221.ExpenseCubit>(() =>
+        _i221.ExpenseCubit(gh<_i758.BaseHiveRepository<_i453.ExpenseModel>>()));
+    gh.factory<_i330.SignUpCubit>(
+        () => _i330.SignUpCubit(gh<_i118.SignUpRepository>()));
     gh.factory<_i494.LoginRepository>(
         () => _i1043.LoginRepositoryImpl(gh<_i454.SupabaseClient>()));
-    gh.factory<_i780.LoginCubit>(
-        () => _i780.LoginCubit(gh<_i494.LoginRepository>()));
+    gh.factory<_i635.LoginCubit>(
+        () => _i635.LoginCubit(gh<_i494.LoginRepository>()));
     return this;
   }
 }

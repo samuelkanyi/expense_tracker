@@ -44,45 +44,6 @@ class ExpenseModel with _$ExpenseModel {
     );
   }
 
-  // JSON serialization
-  factory ExpenseModel.fromJson(Map<String, dynamic> json) =>
-      _$ExpenseModelFromJson(json);
-
   @override
-  // TODO: implement amount
-  double get amount => throw UnimplementedError();
-
-  @override
-  // TODO: implement attachmentPath
-  String? get attachmentPath => throw UnimplementedError();
-
-  @override
-  // TODO: implement category
-  String get category => throw UnimplementedError();
-
-  @override
-  // TODO: implement createdAt
-  DateTime get createdAt => throw UnimplementedError();
-
-  @override
-  // TODO: implement currency
-  String get currency => throw UnimplementedError();
-
-  @override
-  // TODO: implement description
-  String get description => throw UnimplementedError();
-
-  @override
-  // TODO: implement id
-  String get id => throw UnimplementedError();
-
-  @override
-  // TODO: implement paymentMethod
-  String get paymentMethod => throw UnimplementedError();
-
-  @override
-  Map<String, dynamic> toJson() {
-    // TODO: implement toJson
-    throw UnimplementedError();
-  }
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }

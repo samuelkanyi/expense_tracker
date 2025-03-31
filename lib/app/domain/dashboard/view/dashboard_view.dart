@@ -1,7 +1,11 @@
+import 'package:expense_tracker/app/domain/expense/cubit/expense_cubit.dart';
+import 'package:expense_tracker/app/domain/expense/cubit/expense_state.dart';
+import 'package:expense_tracker/app/domain/income/cubit/income_cubit.dart';
 import 'package:expense_tracker/app/dummy_data/data.dart';
 import 'package:expense_tracker/app/routing/router_names.dart';
 import 'package:expense_tracker/util/common/bottom_navigation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:go_router/go_router.dart';
@@ -110,66 +114,91 @@ class _ExpenseDashboardState extends State<ExpenseDashboard> {
   }
 
   Widget _buildBalanceCard() {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Theme.of(context).colorScheme.primary,
-            Theme.of(context).colorScheme.tertiary,
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
-            blurRadius: 15,
-            offset: const Offset(0, 5),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'Total Balance',
-            style: TextStyle(
-              color: Colors.white70,
-              fontSize: 14,
-            ),
-          ),
-          const SizedBox(height: 8),
-          const Text(
-            '\$4,235.68',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 24),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _buildBalanceItem(
-                icon: Icons.arrow_upward,
-                title: 'Income',
-                amount: '\$2,450.80',
-                positive: true,
-              ),
-              _buildBalanceItem(
-                icon: Icons.arrow_downward,
-                title: 'Expenses',
-                amount: '\$986.25',
-                positive: false,
-              ),
-            ],
-          ),
-        ],
-      ),
+    return BlocBuilder<IncomeCubit, IncomeState>(
+      builder: (context, state) {
+        final income = state.total;
+        return BlocBuilder<ExpenseCubit, ExpenseState>(
+          builder: (context, state) {
+            return FutureBuilder(
+              future: context.read<ExpenseCubit>().getTotal(),
+              builder: (context, asyncSnapshot) {
+                if (asyncSnapshot.hasData) {
+                  final expenses = asyncSnapshot.data!;
+                  final balance = income - expenses;
+                  return Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Theme.of(context).colorScheme.primary,
+                          Theme.of(context).colorScheme.tertiary,
+                        ],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .primary
+                              .withOpacity(0.3),
+                          blurRadius: 15,
+                          offset: const Offset(0, 5),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Total Balance',
+                          style: TextStyle(
+                            color: Colors.white70,
+                            fontSize: 14,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          'ksh $balance',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            _buildBalanceItem(
+                              icon: Icons.arrow_upward,
+                              title: 'Income',
+                              amount: 'ksh $income',
+                              positive: true,
+                            ),
+                            _buildBalanceItem(
+                              icon: Icons.arrow_downward,
+                              title: 'Expenses',
+                              amount: 'ksh $expenses',
+                              positive: false,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  );
+                } else if (asyncSnapshot.hasError) {
+                  return Text(asyncSnapshot.error.toString());
+                } else {
+                  return CircularProgressIndicator();
+                }
+              },
+            );
+          },
+        );
+      },
     );
   }
 
@@ -208,7 +237,7 @@ class _ExpenseDashboardState extends State<ExpenseDashboard> {
               amount,
               style: const TextStyle(
                 color: Colors.white,
-                fontSize: 18,
+                fontSize: 12,
                 fontWeight: FontWeight.bold,
               ),
             ),

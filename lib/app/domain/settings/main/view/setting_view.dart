@@ -1,7 +1,7 @@
 import 'package:expense_tracker/app/routing/app_navigator.dart';
 import 'package:expense_tracker/app/routing/router_names.dart';
-import 'package:expense_tracker/settings/language_setting/language_selection_page.dart';
-import 'package:expense_tracker/settings/main/cubit/setting_cubit.dart';
+import 'package:expense_tracker/app/domain/settings/language_setting/language_selection_page.dart';
+import 'package:expense_tracker/app/domain/settings/main/cubit/setting_cubit.dart';
 import 'package:expense_tracker/util/common/base_button.dart';
 import 'package:expense_tracker/widget/cubit_widget.dart';
 import 'package:flutter/material.dart';
