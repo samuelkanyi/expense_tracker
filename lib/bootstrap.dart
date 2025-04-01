@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:developer';
+import 'package:expense_tracker/hive/hive_adapters.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'firebase_options.dart';
 import 'package:bloc/bloc.dart';
 import 'package:expense_tracker/injection/injection.dart';
@@ -42,6 +44,13 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  // Register the adapter in main.dart
+  await Hive.initFlutter();
+  Hive
+    ..registerAdapter(ExpenseModelAdapter())
+    ..registerAdapter(DateTimeAdapter());
+
   //add injection
   configureInjection('development');
 
