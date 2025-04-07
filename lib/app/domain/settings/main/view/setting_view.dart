@@ -138,7 +138,7 @@ class SettingsView extends CubitWidget<SettingCubit, SettingState> {
                   icon: Icons.pie_chart_outline,
                   title: 'Budget Goals',
                   subtitle: 'Set monthly budget goals',
-                  onTap: () {},
+                  onTap: () => GoRouter.of(context).push(RouterNames.addWallet),
                 ),
                 _buildSettingItem(
                   icon: Icons.category_outlined,

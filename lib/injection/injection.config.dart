@@ -18,6 +18,7 @@ import '../app/domain/income/cubit/income_cubit.dart' as _i305;
 import '../app/domain/login/cubit/cubit/login_cubit.dart' as _i635;
 import '../app/domain/settings/main/cubit/setting_cubit.dart' as _i725;
 import '../app/domain/sign_up/cubit/cubit/sign_up_cubit.dart' as _i330;
+import '../app/domain/wallet/cubit/add_wallet_cubit.dart' as _i809;
 import '../app/models/expense/expense_model.dart' as _i453;
 import '../app/repository/login/login_repository.dart' as _i494;
 import '../app/repository/login/login_repository_impl.dart' as _i1043;
@@ -41,6 +42,7 @@ extension GetItInjectableX on _i174.GetIt {
     final externalDependenciesModule = _$ExternalDependenciesModule();
     gh.factory<_i725.SettingCubit>(() => _i725.SettingCubit());
     gh.factory<_i305.IncomeCubit>(() => _i305.IncomeCubit());
+    gh.factory<_i809.AddWalletCubit>(() => _i809.AddWalletCubit());
     gh.singleton<_i454.SupabaseClient>(
         () => externalDependenciesModule.supabaseClient);
     gh.factory<_i118.SignUpRepository>(() => _i169.SignUpRepositoryImpl());
