@@ -7,4 +7,5 @@ abstract class RouterNames {
   static const String settings = '/settings';
   static const String languageSelection = '/language';
   static const String addExpense = '/dashboard/addExpense';
+  static const String addWallet = '/settings/addWallet';
 }

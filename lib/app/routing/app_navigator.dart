@@ -1,5 +1,6 @@
 import 'package:expense_tracker/app/domain/dashboard/dashboard_page.dart';
 import 'package:expense_tracker/app/domain/expense/view/add_expense_view.dart';
+import 'package:expense_tracker/app/domain/wallet/view/add_wallet_view.dart';
 import 'package:expense_tracker/app/helpers/navigation_observer.dart';
 import 'package:expense_tracker/app/routing/router_names.dart';
 import 'package:expense_tracker/app/domain/dashboard/view/dashboard_view.dart';
@@ -60,6 +61,13 @@ final router = GoRouter(
       pageBuilder: (context, state) => MaterialPage(
         key: state.pageKey,
         child: AddExpenseView(),
+      ),
+    ),
+    GoRoute(
+      path: RouterNames.addWallet,
+      pageBuilder: (context, state) => MaterialPage(
+        key: state.pageKey,
+        child: AddWalletPage(),
       ),
     ),
   ],
