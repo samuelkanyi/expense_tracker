@@ -1,3 +1,4 @@
+// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -48,10 +49,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i118.SignUpRepository>(() => _i169.SignUpRepositoryImpl());
     gh.factory<_i758.BaseHiveRepository<_i453.ExpenseModel>>(
         () => _i701.ExpenseRepository());
-    gh.factory<_i221.ExpenseCubit>(() =>
-        _i221.ExpenseCubit(gh<_i758.BaseHiveRepository<_i453.ExpenseModel>>()));
     gh.factory<_i759.DashboardCubit>(() => _i759.DashboardCubit(
         gh<_i758.BaseHiveRepository<_i453.ExpenseModel>>()));
+    gh.factory<_i221.ExpenseCubit>(() =>
+        _i221.ExpenseCubit(gh<_i758.BaseHiveRepository<_i453.ExpenseModel>>()));
     gh.factory<_i330.SignUpCubit>(
         () => _i330.SignUpCubit(gh<_i118.SignUpRepository>()));
     gh.factory<_i494.LoginRepository>(

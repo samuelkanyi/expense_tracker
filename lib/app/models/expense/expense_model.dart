@@ -1,17 +1,17 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_ce/hive.dart';
 import 'package:uuid/uuid.dart';
 
 part 'expense_model.freezed.dart';
 part 'expense_model.g.dart';
 
 @freezed
+@HiveType(typeId: 0)
 class ExpenseModel with _$ExpenseModel {
   // Private constructor needed for Freezed
   const ExpenseModel._();
 
   // Main constructor with factory
-  @HiveType(typeId: 0, adapterName: 'ExpenseModelAdapter')
   factory ExpenseModel({
     @HiveField(0) required String id,
     @HiveField(1) required double amount,

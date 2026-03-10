@@ -5,6 +5,5 @@ part 'hive_adapters.g.dart';
 
 @GenerateAdapters([
   AdapterSpec<ExpenseModel>(),
-  AdapterSpec<DateTime>(),
 ])
 class HiveAdapters {}

@@ -48,8 +48,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   // Register the adapter in main.dart
   await Hive.initFlutter();
   Hive
-    ..registerAdapter(ExpenseModelAdapter())
-    ..registerAdapter(DateTimeAdapter());
+    ..registerAdapter(ExpenseModelAdapter());
 
   //add injection
   configureInjection('development');
