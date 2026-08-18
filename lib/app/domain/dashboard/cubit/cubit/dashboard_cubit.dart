@@ -21,17 +21,17 @@ class DashboardCubit extends Cubit<DashboardState> {
       DashboardState.loaded(
           expenses: totalExpenses,
           transactions: allExpensesDetails,
-          categoryTotals: categoryAmounts),
+          categoryTotals: categoryAmounts,),
     );
   }
 
   List<Map<String, dynamic>> _calculateTotalAmountByCategory(
-      List<ExpenseModel> transactions) {
-    final Map<String, double> categoryTotals = {};
+      List<ExpenseModel> transactions,) {
+    final categoryTotals = <String, double>{};
 
-    for (var transaction in transactions) {
-      String category = transaction.category;
-      double amount = transaction.amount;
+    for (final transaction in transactions) {
+      final category = transaction.category;
+      final amount = transaction.amount;
 
       if (categoryTotals.containsKey(category)) {
         categoryTotals[category] = categoryTotals[category]! + amount;
@@ -40,7 +40,7 @@ class DashboardCubit extends Cubit<DashboardState> {
       }
     }
 
-    final List<Map<String, dynamic>> result = [];
+    final result = <Map<String, dynamic>>[];
     categoryTotals.forEach((category, totalAmount) {
       result.add({
         'name': category,

@@ -1,9 +1,8 @@
-import 'package:expense_tracker/app/routing/app_navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class LanguageSelectionPage extends StatefulWidget {
-  const LanguageSelectionPage({Key? key}) : super(key: key);
+  const LanguageSelectionPage({super.key});
 
   @override
   State<LanguageSelectionPage> createState() => _LanguageSelectionPageState();
@@ -54,7 +53,7 @@ class _LanguageSelectionPageState extends State<LanguageSelectionPage> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -112,7 +111,7 @@ class _LanguageSelectionPageState extends State<LanguageSelectionPage> {
     return InkWell(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16.0),
+        padding: const EdgeInsets.symmetric(vertical: 16),
         child: Row(
           children: [
             Text(

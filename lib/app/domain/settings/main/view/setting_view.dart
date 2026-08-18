@@ -1,7 +1,6 @@
-import 'package:expense_tracker/app/routing/app_navigator.dart';
-import 'package:expense_tracker/app/routing/router_names.dart';
 import 'package:expense_tracker/app/domain/settings/language_setting/language_selection_page.dart';
 import 'package:expense_tracker/app/domain/settings/main/cubit/setting_cubit.dart';
+import 'package:expense_tracker/app/routing/router_names.dart';
 import 'package:expense_tracker/util/common/base_button.dart';
 import 'package:expense_tracker/widget/cubit_widget.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +32,7 @@ class SettingsView extends CubitWidget<SettingCubit, SettingState> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -50,7 +49,7 @@ class SettingsView extends CubitWidget<SettingCubit, SettingState> {
                       ),
                       child: const Icon(
                         Icons.person,
-                        color: const Color(0xFF7B6AF0),
+                        color: Color(0xFF7B6AF0),
                         size: 30,
                       ),
                     ),
@@ -111,14 +110,14 @@ class SettingsView extends CubitWidget<SettingCubit, SettingState> {
                   title: 'Language',
                   subtitle: 'English (US)',
                   onTap: () async {
-                    final _selectedLanguage = await Navigator.push(
+                    final selectedLanguage = await Navigator.push(
                       context,
                       MaterialPageRoute<String>(
                         builder: (context) => const LanguageSelectionPage(),
                       ),
                     );
 
-                    if (_selectedLanguage != null) {
+                    if (selectedLanguage != null) {
                       //TODOset state to new language. will ahve to change
                       //from cubitWidget to stateful widget
                     }
@@ -192,7 +191,7 @@ class SettingsView extends CubitWidget<SettingCubit, SettingState> {
     return InkWell(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 12.0),
+        padding: const EdgeInsets.symmetric(vertical: 12),
         child: Row(
           children: [
             Container(

@@ -32,7 +32,7 @@ class SignUpRepositoryImpl extends SignUpRepository {
 
       return response.user!;
     } catch (e) {
-      throw Exception('Registration failed: ${e.toString()}');
+      throw Exception('Registration failed: $e');
     }
   }
 
@@ -47,7 +47,7 @@ class SignUpRepositoryImpl extends SignUpRepository {
 
       return response.session != null;
     } catch (e) {
-      throw Exception('Phone verification failed: ${e.toString()}');
+      throw Exception('Phone verification failed: $e');
     }
   }
 }

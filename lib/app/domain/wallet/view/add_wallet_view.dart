@@ -3,6 +3,8 @@ import 'package:expense_tracker/widget/cubit_widget.dart';
 import 'package:flutter/material.dart';
 
 class AddWalletPage extends CubitWidget<AddWalletCubit, AddWalletState> {
+  AddWalletPage({super.key});
+
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _amountController = TextEditingController();
   final TextEditingController _bankNameController = TextEditingController();
@@ -14,7 +16,7 @@ class AddWalletPage extends CubitWidget<AddWalletCubit, AddWalletState> {
   }
 
   @override
-  Widget build(BuildContext context, AddWalletCubit cubit, AddWalletState) {
+  Widget build(BuildContext context, AddWalletCubit cubit, AddWalletState AddWalletState) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -27,7 +29,7 @@ class AddWalletPage extends CubitWidget<AddWalletCubit, AddWalletState> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -39,8 +41,6 @@ class AddWalletPage extends CubitWidget<AddWalletCubit, AddWalletState> {
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(
                       colors: [Color(0xFF7562FA), Color(0xFF5ECBEF)],
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
                     ),
                     borderRadius: BorderRadius.circular(16),
                     boxShadow: [
@@ -117,7 +117,7 @@ class AddWalletPage extends CubitWidget<AddWalletCubit, AddWalletState> {
                             color: Colors.white.withOpacity(0.2),
                             shape: BoxShape.circle,
                           ),
-                          child: Center(
+                          child: const Center(
                             child: Icon(
                               Icons.credit_card,
                               color: Colors.white,
@@ -131,7 +131,7 @@ class AddWalletPage extends CubitWidget<AddWalletCubit, AddWalletState> {
                 ),
               ),
               const SizedBox(height: 40),
-              Text(
+              const Text(
                 'Wallet Details',
                 style: TextStyle(
                   fontSize: 20,
@@ -150,7 +150,7 @@ class AddWalletPage extends CubitWidget<AddWalletCubit, AddWalletState> {
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        prefixIcon: Icon(Icons.account_balance),
+                        prefixIcon: const Icon(Icons.account_balance),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -168,7 +168,7 @@ class AddWalletPage extends CubitWidget<AddWalletCubit, AddWalletState> {
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        prefixIcon: Icon(Icons.attach_money),
+                        prefixIcon: const Icon(Icons.attach_money),
                       ),
                       keyboardType: TextInputType.number,
                       validator: (value) {
@@ -192,7 +192,7 @@ class AddWalletPage extends CubitWidget<AddWalletCubit, AddWalletState> {
                             // Process data
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
-                                  content: Text('Wallet added successfully!')),
+                                  content: Text('Wallet added successfully!'),),
                             );
                             // Navigate back or to another page
                           }

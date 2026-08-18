@@ -8,7 +8,7 @@ part 'income_cubit.freezed.dart';
 @injectable
 class IncomeCubit extends Cubit<IncomeState> {
   IncomeCubit() : super(const IncomeState.initial(100000));
-  double income = 100000.0;
+  double income = 100000;
 
   void updateIncome(double value) {
     emit(IncomeState.loaded(income - value));

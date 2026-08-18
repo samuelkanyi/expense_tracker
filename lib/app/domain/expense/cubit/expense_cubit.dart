@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:expense_tracker/app/domain/expense/cubit/expense_state.dart';
 import 'package:expense_tracker/app/models/expense/expense_model.dart';
 import 'package:expense_tracker/hive/repository/base_repository.dart';
-import 'package:expense_tracker/hive/repository/expense_repository.dart';
 import 'package:expense_tracker/util/app_utils.dart';
 import 'package:injectable/injectable.dart';
 
@@ -41,7 +40,7 @@ class ExpenseCubit extends Cubit<ExpenseState> {
           currency: state.currency!,
           category: state.category!,
           paymentMethod: state.paymentMethod!,
-          description: state.description!);
+          description: state.description!,);
 
       await repository.add(model);
 
@@ -49,7 +48,7 @@ class ExpenseCubit extends Cubit<ExpenseState> {
     } catch (e) {
       logThis(e);
       emit(state.copyWith(
-          step: ExpenseFormStateStep.failure, error: e.toString()));
+          step: ExpenseFormStateStep.failure, error: e.toString(),),);
     }
   }
 

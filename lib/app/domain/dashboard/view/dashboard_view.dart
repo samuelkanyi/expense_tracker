@@ -1,13 +1,10 @@
 import 'package:expense_tracker/app/domain/dashboard/cubit/cubit/dashboard_cubit.dart';
-import 'package:expense_tracker/app/domain/expense/cubit/expense_cubit.dart';
-import 'package:expense_tracker/app/domain/expense/cubit/expense_state.dart';
-import 'package:expense_tracker/app/domain/income/cubit/income_cubit.dart';
 import 'package:expense_tracker/app/dummy_data/data.dart';
 import 'package:expense_tracker/app/routing/router_names.dart';
 import 'package:expense_tracker/util/common/bottom_navigation.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
@@ -34,7 +31,7 @@ class _ExpenseDashboardState extends State<ExpenseDashboard> {
           return SafeArea(
             child: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -262,9 +259,8 @@ class _ExpenseDashboardState extends State<ExpenseDashboard> {
           ),
           child: LineChart(
             LineChartData(
-              gridData: FlGridData(show: false),
+              gridData: const FlGridData(show: false),
               titlesData: FlTitlesData(
-                show: true,
                 bottomTitles: AxisTitles(
                   sideTitles: SideTitles(
                     showTitles: true,
@@ -272,7 +268,7 @@ class _ExpenseDashboardState extends State<ExpenseDashboard> {
                       const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
                       if (value >= 0 && value < months.length) {
                         return Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
+                          padding: const EdgeInsets.only(top: 8),
                           child: Text(
                             months[value.toInt()],
                             style: TextStyle(
@@ -306,7 +302,7 @@ class _ExpenseDashboardState extends State<ExpenseDashboard> {
                   color: Theme.of(context).colorScheme.primary,
                   barWidth: 3,
                   isStrokeCapRound: true,
-                  dotData: FlDotData(show: false),
+                  dotData: const FlDotData(show: false),
                   belowBarData: BarAreaData(
                     show: true,
                     color:
@@ -345,7 +341,7 @@ class _ExpenseDashboardState extends State<ExpenseDashboard> {
           ),
           itemCount: data.categoryTotals.length,
           itemBuilder: (context, index) {
-            final Map<String, dynamic> category = data.categoryTotals[index];
+            final category = data.categoryTotals[index];
             return Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
@@ -470,7 +466,7 @@ class _ExpenseDashboardState extends State<ExpenseDashboard> {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        '${transaction.category} • ${DateFormat.MMMd().format(transaction.createdAt as DateTime)}',
+                        '${transaction.category} • ${DateFormat.MMMd().format(transaction.createdAt)}',
                         style: TextStyle(
                           fontSize: 13,
                           color: Colors.grey[600],

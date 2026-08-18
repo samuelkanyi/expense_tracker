@@ -8,7 +8,7 @@ final ThemeData appTheme = ThemeData(
   colorScheme: const ColorScheme.light(
       primary: AppColors.primary,
       secondary: AppColors.secondary,
-      tertiary: AppColors.tertiary),
+      tertiary: AppColors.tertiary,),
   textTheme: const TextTheme(
     displayLarge: TextStyle(
       fontSize: 32,

@@ -22,9 +22,8 @@ class _LoginViewState extends State<LoginView> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Spacer(),
               ShaderMask(
@@ -96,7 +95,7 @@ class _LoginViewState extends State<LoginView> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Don\'t have an account yet? ',
+                    "Don't have an account yet? ",
                     style: TextStyle(
                       color: Colors.grey.shade600,
                       fontSize: 14,

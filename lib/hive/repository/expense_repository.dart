@@ -35,8 +35,8 @@ class ExpenseRepository extends BaseHiveRepository<ExpenseModel> {
   @override
   Future<void> deleteAll() async {
     final box = await Hive.openBox<ExpenseModel>(boxName);
-    int boxLength = box.values.length;
-    for (int i = 0; i <= boxLength; i++) {
+    final boxLength = box.values.length;
+    for (var i = 0; i <= boxLength; i++) {
       await box.deleteAt(i);
     }
   }
@@ -44,12 +44,12 @@ class ExpenseRepository extends BaseHiveRepository<ExpenseModel> {
   @override
   Future<double> totalExpenses() async {
     final box = await Hive.openBox<ExpenseModel>(boxName);
-    List<ExpenseModel> models = box.values.toList();
+    final models = box.values.toList();
 
     if (models.isEmpty) {
       return 0;
     }
-    double total =
+    final total =
         models.map((model) => model.amount).reduce((prev, next) => prev + next);
 
     return total;
