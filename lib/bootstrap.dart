@@ -34,12 +34,24 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   };
 
   Bloc.observer = const AppBlocObserver();
-  await dotenv.load();
+  try {
+    await dotenv.load();
+  } catch (e) {
+    log('Warning: Failed to load .env file: $e');
+  }
+
   // Initialize Supabase
-  await Supabase.initialize(
-    url: dotenv.env['SUPABASE_URL']!,
-    anonKey: dotenv.env['SUPABASE_TOKEN']!,
-  );
+  final supabaseUrl = dotenv.env['SUPABASE_URL'];
+  final supabaseToken = dotenv.env['SUPABASE_TOKEN'];
+
+  if (supabaseUrl != null && supabaseToken != null) {
+    await Supabase.initialize(
+      url: supabaseUrl,
+      anonKey: supabaseToken,
+    );
+  } else {
+    log('Warning: Supabase environment variables not set. App will run in offline mode.');
+  }
 
   // Add cross-flavor configuration here
   await Firebase.initializeApp(
