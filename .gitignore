@@ -118,3 +118,4 @@ android/app/base64_google-services.txt
 lib/generated/intl/*
 lib/generated/*
 *.env.env
+.env
