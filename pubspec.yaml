@@ -56,7 +56,6 @@ flutter:
     - assets/illustrations/
     - assets/icons/
     - shorebird.yaml
-    - .env
 # flutter native splash screen
 flutter_native_splash:
   color: "#7F3DFF"
