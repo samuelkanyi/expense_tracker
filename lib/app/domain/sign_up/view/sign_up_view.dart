@@ -1,7 +1,7 @@
-import 'package:expense_tracker/app/routing/app_navigator.dart';
-import 'package:expense_tracker/l10n/l10n.dart';
 import 'package:expense_tracker/app/domain/sign_up/cubit/cubit/sign_up_cubit.dart';
 import 'package:expense_tracker/app/domain/sign_up/cubit/cubit/sign_up_state.dart';
+import 'package:expense_tracker/app/routing/app_navigator.dart';
+import 'package:expense_tracker/l10n/l10n.dart';
 import 'package:expense_tracker/util/common/base_button.dart';
 import 'package:expense_tracker/util/common/custom_input.dart';
 import 'package:expense_tracker/util/common/social_icons.dart';
@@ -10,11 +10,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SignUpView extends CubitWidget<SignUpCubit, SignUpState> {
-  SignUpView({super.key});
-  bool _acceptTerms = false;
+  const SignUpView({super.key});
+  final bool _acceptTerms = false;
   @override
   Widget build(
-      BuildContext context, SignUpCubit signUpCubit, SignUpState signUpState) {
+      BuildContext context, SignUpCubit signUpCubit, SignUpState signUpState,) {
     final S = context.l10n;
     return Scaffold(
       backgroundColor: Colors.white,

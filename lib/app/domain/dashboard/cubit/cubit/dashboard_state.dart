@@ -7,7 +7,7 @@ class DashboardState with _$DashboardState {
       {@Default(100000.00) double income,
       @Default(0) double expenses,
       @Default([]) List<Map<String, dynamic>> categoryTotals,
-      @Default([]) List<ExpenseModel> transactions}) = Loaded;
+      @Default([]) List<ExpenseModel> transactions,}) = Loaded;
 
   const factory DashboardState.loading() = Loading;
 }

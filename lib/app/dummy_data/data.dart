@@ -79,14 +79,14 @@ final List<String> categories = [
   'Transport',
   'Entertainment',
   'Shopping',
-  'Utilities'
+  'Utilities',
 ];
 final List<String> wallets = [
   'Mpesa',
   'Cash',
   'Credit Card',
   'Debit Card',
-  'Savings'
+  'Savings',
 ];
 
 // Monthly spending data

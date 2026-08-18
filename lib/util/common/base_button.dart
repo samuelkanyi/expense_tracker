@@ -14,7 +14,7 @@ class BaseButton extends StatelessWidget {
       this.withIcon = false,
       this.label = 'Button',
       this.icon = const Icon(Icons.add),
-      this.buttonStatus = ButtonStatus.enabled});
+      this.buttonStatus = ButtonStatus.enabled,});
   final Color textColor;
   final Color backgroundColor;
   final VoidCallback onPressed;
@@ -76,7 +76,7 @@ class PrimaryButton extends BaseButton {
             textColor: Colors.white,
             withIcon: hasIcon,
             buttonStatus:
-                isLoading ? ButtonStatus.loading : ButtonStatus.enabled);
+                isLoading ? ButtonStatus.loading : ButtonStatus.enabled,);
 }
 
 class SecondaryButton extends BaseButton {

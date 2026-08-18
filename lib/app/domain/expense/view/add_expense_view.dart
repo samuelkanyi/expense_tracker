@@ -1,18 +1,16 @@
-import 'dart:ffi';
-
-import 'package:expense_tracker/app/dummy_data/data.dart';
 import 'package:expense_tracker/app/domain/expense/cubit/expense_cubit.dart';
 import 'package:expense_tracker/app/domain/expense/cubit/expense_state.dart';
+import 'package:expense_tracker/app/dummy_data/data.dart';
 import 'package:expense_tracker/app/routing/app_navigator.dart';
 import 'package:expense_tracker/util/colors.dart';
 import 'package:expense_tracker/util/common/base_button.dart';
 import 'package:expense_tracker/widget/cubit_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class AddExpenseView extends CubitWidget<ExpenseCubit, ExpenseState> {
+  const AddExpenseView({super.key});
+
   @override
   Widget build(BuildContext context, ExpenseCubit cubit, ExpenseState state) {
     return Scaffold(
@@ -39,7 +37,7 @@ class AddExpenseView extends CubitWidget<ExpenseCubit, ExpenseState> {
               const SnackBar(content: Text('Expense Added')),
             );
             Future.delayed(
-                const Duration(seconds: 1), () => context.navigateToHome());
+                const Duration(seconds: 1), () => context.navigateToHome(),);
           } else if (state.step == ExpenseFormStateStep.failure) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text(state.error!)),
@@ -69,7 +67,7 @@ class AddExpenseView extends CubitWidget<ExpenseCubit, ExpenseState> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        '\KSH',
+                        'KSH',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 40,
@@ -81,7 +79,7 @@ class AddExpenseView extends CubitWidget<ExpenseCubit, ExpenseState> {
                         child: TextField(
                           onChanged: (value) => cubit.onAmountChanged(value),
                           keyboardType:
-                              TextInputType.numberWithOptions(decimal: true),
+                              const TextInputType.numberWithOptions(decimal: true),
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 40,
@@ -162,7 +160,7 @@ class AddExpenseView extends CubitWidget<ExpenseCubit, ExpenseState> {
                           hintStyle: TextStyle(color: Colors.grey),
                           border: InputBorder.none,
                           contentPadding: EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 16),
+                              horizontal: 16, vertical: 16,),
                         ),
                       ),
                     ),

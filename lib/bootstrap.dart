@@ -1,13 +1,14 @@
 import 'dart:async';
 import 'dart:developer';
-import 'package:expense_tracker/hive/hive_adapters.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:hive_ce_flutter/hive_flutter.dart';
-import 'firebase_options.dart';
+
 import 'package:bloc/bloc.dart';
+import 'package:expense_tracker/firebase_options.dart';
+import 'package:expense_tracker/hive/hive_adapters.dart';
 import 'package:expense_tracker/injection/injection.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AppBlocObserver extends BlocObserver {
@@ -48,8 +49,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   // Register the adapter in main.dart
   await Hive.initFlutter();
   Hive
-    ..registerAdapter(ExpenseModelAdapter())
-    ..registerAdapter(DateTimeAdapter());
+    .registerAdapter(ExpenseModelAdapter());
 
   //add injection
   configureInjection('development');

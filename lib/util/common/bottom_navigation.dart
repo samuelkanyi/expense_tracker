@@ -55,7 +55,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
     required String label,
     required int index,
   }) {
-    final bool isSelected = _selectedIndex == index;
+    final isSelected = _selectedIndex == index;
     return InkWell(
       onTap: () {
         setState(() {

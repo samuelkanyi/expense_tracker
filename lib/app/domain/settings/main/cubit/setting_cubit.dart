@@ -7,5 +7,5 @@ part 'setting_cubit.freezed.dart';
 
 @injectable
 class SettingCubit extends Cubit<SettingState> {
-  SettingCubit() : super(SettingState.initial());
+  SettingCubit() : super(const SettingState.initial());
 }

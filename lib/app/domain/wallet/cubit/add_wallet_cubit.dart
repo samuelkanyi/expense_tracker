@@ -7,5 +7,5 @@ part 'add_wallet_cubit.freezed.dart';
 
 @injectable
 class AddWalletCubit extends Cubit<AddWalletState> {
-  AddWalletCubit() : super(AddWalletState.initial());
+  AddWalletCubit() : super(const AddWalletState.initial());
 }
